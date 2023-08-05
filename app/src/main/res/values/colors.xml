@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+<!--    <color name="purple_500">#FF6200EE</color>-->
+    <color name="purple_500">#FFEDDB</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#73A3D4</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="primary_first">#82C0CC</color>
+    <color name="primary_second">#489FB5</color>
+    <color name="primary_third">#16697A</color>
+    <color name="primary_fourth">#FFA62B</color>
+    <color name="primary_fifth">#D4A373</color>
+
+    <color name="secondary_first">#A4B0F5</color>
+    <color name="secondary_second">#73A3D4</color>
+    <color name="secondary_third">#377CD4</color>
+    <color name="secondary_fourth">#BACBA9</color>
+    <color name="secondary_fifth">#D9D9D9</color>
+    <color name="secondary_sixth">#FFEDDB</color>
+    <color name="secondary_seventh">#D1C889</color>
+
+
+    <color name="textcolor_first_black">#FF000000</color>
+    <color name="textcolor_second">#363232</color>
+    <color name="textcolor_third_white">#FFFFFF</color>
+    <color name="textcolor_fourth">#FF00FF</color>
+
+<!--    <color name="t1">#73A3D4 </color>-->
+<!--    <color name="t2">#377CD4</color>-->
+    <color name="t3">#D47373 </color>
+    <color name="t4">#FFD473 </color>
+
+
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- When selected -->
+    <item android:state_pressed="true" android:drawable="@drawable/shadowmaker"/>
+    <item android:state_activated="true" android:drawable="@drawable/shadowmaker"/>
+    <item android:state_selected="true" android:drawable="@drawable/shadowmaker"/>
+    <item android:state_focused="true" android:drawable="@drawable/shadowmaker"/>
+
+    <!-- When not selected -->
+    <item android:state_enabled="false" android:state_selected="false" android:drawable="@drawable/shadowmaker_not_enabled"/>
+    <item android:drawable="@drawable/oval_image_button_shadow"/>
+</selector>

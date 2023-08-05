@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondary_sixth"
+    tools:context=".TwoPlayersWithPauseFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/frameLayout_ftpwp2"
+            android:layout_width="198dp"
+            android:layout_height="311dp"
+            android:layout_marginTop="66dp"
+            android:rotationX="180"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progressBar_ftpwp2"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/circle_shape_progressbar"
+                android:indeterminate="false"
+                android:progress="90"
+                android:progressDrawable="@drawable/circular_progressbar_green"
+                android:rotationY="180" />
+
+            <View
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_shape_progressbar_view" />
+
+            <Chronometer
+                android:id="@+id/chronometer2"
+                android:layout_width="60pt"
+                android:layout_height="20pt"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:rotationY="180"
+                android:textSize="24sp"
+                android:textStyle="bold"></Chronometer>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textview_ftpwp_player2Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="48dp"
+            android:rotationX="180"
+            android:rotationY="180"
+            android:text="@string/player2NameTxt"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/frameLayout_ftpwp2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageButton
+                android:id="@+id/imageButton_2playersWithPause_pause2"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="76dp"
+                android:background="@drawable/button_selector"
+                android:backgroundTintMode="@color/white"
+                android:rotationY="180"
+                android:src="@drawable/round_pause_65"
+                android:visibility="invisible"></ImageButton>
+
+            <ImageButton
+                android:id="@+id/imageButton_2playersWithPause_play2"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="30dp"
+                android:layout_toRightOf="@+id/imageButton_2playersWithPause_pause2"
+                android:background="@drawable/button_selector"
+                android:rotationY="180"
+                android:src="@drawable/round_play_arrow_65"></ImageButton>
+
+            <ImageButton
+                android:id="@+id/imageButton_2playersWithPause_restart2"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="30dp"
+                android:layout_toRightOf="@+id/imageButton_2playersWithPause_play2"
+                android:background="@drawable/button_selector"
+                android:backgroundTintMode="@color/white"
+                android:rotationX="180"
+                android:src="@drawable/round_replay_65"
+                android:visibility="invisible"></ImageButton>
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <View
+        android:id="@+id/divider_2pWithPause"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp"
+        android:background="@color/t3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_2pWithPause">
+
+
+        <FrameLayout
+            android:id="@+id/frameLayout_ftpwp1"
+            android:layout_width="198sp"
+            android:layout_height="311sp"
+            android:layout_marginBottom="66dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progressBar_ftpwp1"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/circle_shape_progressbar"
+                android:indeterminate="false"
+
+                android:progressDrawable="@drawable/circular_progressbar_green" />
+
+            <View
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_shape_progressbar_view" />
+
+            <Chronometer
+                android:id="@+id/chronometer1"
+                android:layout_width="60pt"
+                android:layout_height="20pt"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:textStyle="bold"></Chronometer>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textview_ftpwp_player1Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="48dp"
+            android:text="@string/player1NameTxt"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteY="46dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout_ftpwp1">
+
+            <ImageButton
+                android:id="@+id/imageButton_2playersWithPause_pause1"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="76dp"
+                android:background="@drawable/button_selector"
+                android:backgroundTintMode="@color/white"
+                android:src="@drawable/round_pause_65"
+                android:visibility="invisible"></ImageButton>
+
+
+            <ImageButton
+                android:id="@+id/imageButton_2playersWithPause_play1"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="30dp"
+                android:layout_toRightOf="@+id/imageButton_2playersWithPause_pause1"
+                android:background="@drawable/button_selector"
+                android:src="@drawable/round_play_arrow_65"
+                android:visibility="visible"></ImageButton>
+
+            <ImageButton
+                android:id="@+id/imageButton_2playersWithPause_restart1"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="30dp"
+                android:layout_toRightOf="@+id/imageButton_2playersWithPause_play1"
+                android:background="@drawable/button_selector"
+                android:backgroundTintMode="@color/white"
+                android:src="@drawable/round_replay_65"
+                android:visibility="invisible"></ImageButton>
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

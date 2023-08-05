@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    <group-->
+<!--        android:id="@+id/language_group"-->
+<!--        android:checkableBehavior="single">-->
+<!--        <item-->
+<!--            android:id="@+id/english_languageMenuItem"-->
+<!--            android:title="@string/textEnglishLanguage"-->
+<!--            android:icon="@drawable/uk">-->
+<!--        </item>-->
+<!--        <item-->
+<!--            android:id="@+id/greek_languageMenuItem"-->
+<!--            android:title="@string/textGreekLanguage"-->
+<!--            android:icon="@drawable/greece">-->
+<!--        </item>-->
+<!--    </group>-->
+
+
+</menu>

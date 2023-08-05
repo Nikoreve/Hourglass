@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hourglass</string>
+    <!-- SettingsActivity Activity Title -->
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!--    activity_settings.xml-->
+    <string name="startButton">START</string>
+    <string name="setTimeButton">SET TIME</string>
+    <string name="playersButton">PLAYERS</string>
+    <string name="settingsButton">SETTINGS</string>
+    <string name="quitButton">QUIT</string>
+
+    <!--    activity_settings.xml-->
+    <string name="settingsTextLanguage">Language</string>
+    <string name="settingsTextTheme">Theme</string>
+    <string name="settingsTextManual">Manual</string>
+    <string name="settingsTextSFX">SFX</string>
+    <string name="settingsTextMusic">Music</string>
+    <string name="settingsTextAbout">About</string>
+    <string name="settingsButtonBack">Back</string>
+    <string name="aboutDialogTitle">Application Info</string>
+    <string name="aboutDialogMessage">
+        Hourglass developped by android developer Nikolas Sarakenidis\n
+        The application runs only on Android smartphones\n
+        Minimum SDK: 24\n
+        Version: 1.00
+    </string>
+
+    <string name="textEnglishLanguage">English (Default)</string>
+    <string name="textGreekLanguage">Greek</string>
+
+    <!--    set_time_customdialog.xml-->
+    <string name="languageDialog">Select Language</string>
+    <string name="english_language_selected">Language has changed to English</string>
+    <string name="greek_language_selected">Language has changed to Greek</string>
+    <string name="setTimeTitle">Set your desired time</string>
+    <string name="withPauseText">With Pause:</string>
+    <string name="minutesTxt">minutes</string>
+    <string name="secondsTxt">seconds</string>
+    <string name="doneButton">DONE</string>
+
+    <!--    setnofplayers_customdialog.xml-->
+    <string name="playersTxt">players</string>
+    <string name="hint_player1Name">Player1 Name</string>
+    <string name="hint_player2Name">Player2 Name</string>
+    <string name="setnofplayersTitle">Set Number Of Players</string>
+
+    <!--    language_item.xml-->
+    <string name="image_description_flag">A flag that refines visualy the text on the left</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notificationTitleRunning">CountDown Timer is running</string>
+    <string name="notificationTitleStop">CountDown Timer stoped</string>
+    <string name="notificationTitleFinish">CountDown Timer finished!</string>
+
+    <!-- fragment_two_players_with_pause -->
+    <string name="player1NameTxt">Player 1</string>
+    <string name="player2NameTxt">Player 2</string>
+    <string name="player1TimeFinished">Time finished for</string>
+    <string name="player2TimeFinished">Time finished for</string>
+
+</resources>

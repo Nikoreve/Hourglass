@@ -1,0 +1,29 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+                <vector
+                    android:name="vector"
+                    android:width="64dp"
+                    android:height="64dp"
+                    android:viewportWidth="64"
+                    android:viewportHeight="64">
+                    <group android:name="group_1">
+                        <path
+                            android:name="path"
+                            android:fillColor="@color/secondary_second"
+                            android:pathData="M 21.333 18.187 L 21.333 45.813 C 21.333 47.92 23.653 49.2 25.44 48.053 L 47.147 34.24 C 48.8 33.2 48.8 30.8 47.147 29.733 L 25.44 15.947 C 23.653 14.8 21.333 16.08 21.333 18.187 Z" />
+                    </group>
+                </vector>
+    </aapt:attr>
+    <target android:name="path">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="400"
+                android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+                android:propertyName="pathData"
+                android:valueFrom="M 21.333 18.187 L 21.333 32 L 21.333 45.813 C 21.333 47.92 23.653 49.2 25.44 48.053 C 29.058 45.751 32.676 43.449 36.293 41.147 L 47.147 34.24 C 48.8 33.2 48.8 30.8 47.147 29.733 L 36.293 22.84 C 32.676 20.542 29.058 18.244 25.44 15.947 C 23.653 14.8 21.333 16.08 21.333 18.187 C 21.333 18.187 21.333 18.187 21.333 18.187"
+                android:valueTo="M 24.827 21.653 L 35.173 32 L 24.827 42.347 C 23.787 43.387 23.787 45.067 24.827 46.107 C 25.867 47.147 27.547 47.147 28.587 46.107 L 40.827 33.867 C 41.867 32.827 41.867 31.147 40.827 30.107 L 28.587 17.867 C 27.573 16.853 25.867 16.853 24.827 17.893 C 24.827 17.893 24.827 17.893 24.827 17.893 C 23.787 18.933 23.787 20.613 24.827 21.653"
+                android:valueType="pathType" />
+        </aapt:attr>
+    </target>
+</animated-vector>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondary_sixth"
+    tools:context=".OnePlayerWithPauseFragment">
+
+    <FrameLayout
+        android:id="@+id/relativeLayout_1playerWithPause"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="110dp"
+        android:background="@color/secondary_sixth"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ProgressBar
+            android:id="@+id/progressBar_fopwp"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_shape_progressbar"
+            android:indeterminate="false"
+            android:progress="90"
+            android:progressDrawable="@drawable/circular_progressbar_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_shape_progressbar_view" />
+
+        <Chronometer
+            android:id="@+id/chronometer"
+            android:layout_width="60pt"
+            android:layout_height="20pt"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textStyle="bold"></Chronometer>
+
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/textView_1playerWithPause_minutes"-->
+        <!--            android:layout_width="80dp"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:letterSpacing="0.2"-->
+        <!--            android:text="KAti1"-->
+        <!--            android:textColor="@color/textcolor_second"-->
+        <!--            android:textSize="24dp"-->
+        <!--            android:textStyle="bold"></TextView>-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/textView_1playerWithPause_colon"-->
+        <!--            android:layout_width="10dp"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:layout_toRightOf="@id/textView_1playerWithPause_minutes"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text=":"-->
+        <!--            android:textColor="@color/textcolor_second"-->
+        <!--            android:textSize="24dp"-->
+        <!--            android:textStyle="bold"></TextView>-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/textView_1playerWithPause_seconds"-->
+        <!--            android:layout_width="80dp"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:layout_toRightOf="@id/textView_1playerWithPause_colon"-->
+        <!--            android:gravity="center"-->
+        <!--            android:letterSpacing="0.2"-->
+        <!--            android:text="KAti2"-->
+        <!--            android:textColor="@color/textcolor_second"-->
+        <!--            android:textSize="24dp"-->
+        <!--            android:textStyle="bold"></TextView>-->
+
+    </FrameLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_1playerWithPause"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout_1playerWithPause">
+
+        <ImageButton
+            android:id="@+id/imageButton_1playerWithPause_pause"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="106dp"
+            android:layout_marginTop="280dp"
+            android:background="@drawable/button_selector"
+            android:backgroundTintMode="@color/white"
+            android:src="@drawable/round_pause_65"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+
+        <ImageButton
+            android:id="@+id/imageButton_1playerWithPause_play"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="280dp"
+            android:background="@drawable/button_selector"
+            android:src="@drawable/round_play_arrow_65"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+
+        <ImageButton
+            android:id="@+id/imageButton_1playerWithPause_restart"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="240dp"
+            android:layout_marginTop="280dp"
+            android:background="@drawable/button_selector"
+            android:backgroundTintMode="@color/white"
+            android:src="@drawable/round_replay_65"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

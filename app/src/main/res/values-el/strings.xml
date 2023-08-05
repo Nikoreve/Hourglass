@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ΚΛΕΨΥΔΡΑ</string>
+    <!-- SettingsActivity Activity Title -->
+    <string name="title_activity_settings">ΡΥΘΜΙΣΕΙΣ</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!--    activity_main.xml-->
+    <string name="startButton">ΞΕΚΙΝΑ</string>
+    <string name="setTimeButton">ΟΡΙΣΕ ΧΡΟΝΟ</string>
+    <string name="playersButton">ΠΑΙΚΤΕΣ</string>
+    <string name="settingsButton">ΡΥΘΜΙΣΕΙΣ</string>
+    <string name="quitButton">ΕΞΟΔΟΣ</string>
+
+
+    <!--    activity_settings.xml-->
+    <string name="settingsTextLanguage">Γλώσσα</string>
+    <string name="settingsTextTheme">Θέμα</string>
+    <string name="settingsTextManual">Εγχειρήδιο Χρήσης</string>
+    <string name="settingsTextSFX">SFX</string>
+    <string name="settingsTextMusic">Μουσική</string>
+    <string name="settingsTextAbout">Σχετικά με την Εφαρμογή</string>
+    <string name="settingsButtonBack">ΕΠΙΣΤΡΟΦΗ</string>
+    <string name="aboutDialogTitle">Πληφορορίες εφαρμογής</string>
+    <string name="aboutDialogMessage">
+        Το Hourglass αναπτύχθηκε από τον προγραμματιστή κινητών συσκευών Νικόλαο Σαρακενίδη\n
+        Η εφαρμογή τρέχει μόνο σε android κινητές συσκευές\n
+        Ελάχιστο SDK: 24\n
+        Έκδοση: 1.00</string>
+
+    <string name="textEnglishLanguage">Αγγλικά</string>
+    <string name="textGreekLanguage">Ελληνικά</string>
+
+
+    <string name="languageDialog">Επιλέξτε Γλώσσα</string>
+    <string name="english_language_selected">Η γλώσσα άλλαξε σε Αγγλικά</string>
+    <string name="greek_language_selected">Η γλώσσα άλλαξε σε Ελληνικά</string>
+
+<!--    set_time_customdialog.xml-->
+    <string name="setTimeTitle">Ορίστε τον επιθυμητό χρόνο</string>
+    <string name="withPauseText">Με παύση:</string>
+    <string name="minutesTxt">λεπτά</string>
+    <string name="secondsTxt">δεύτερα</string>
+    <string name="doneButton">ΤΕΛΟΣ</string>
+
+    <!--    setnofplayers_customdialog.xml-->
+    <string name="setnofplayersTitle">Ορίστε τον αριθμό παικτών</string>
+    <string name="playersTxt">παίκτες</string>
+    <string name="hint_player1Name">Όνομα Παίκτη 1</string>
+    <string name="hint_player2Name">Όνομα Παίκτη 2</string>
+
+    <!--    language_item.xml-->
+    <string name="image_description_flag">Μία σημαία που δηλώνει εικονικά το κείμενο στα αριστερά</string>
+    <string name="notificationTitleFinish">Η Αντίστροφη Μέτρηση ολοκληρώθηκε!</string>
+    <string name="notificationTitleRunning">Η Αντίστροφη Μέτρηση είναι σε εξέλιξη</string>
+    <string name="notificationTitleStop">Η Αντίστροφη Μέτρηση είναι σε παύση</string>
+
+
+    <!-- fragment_two_players_with_pause -->
+    <string name="player1NameTxt">Παίχτης 1</string>
+    <string name="player2NameTxt">Παίχτης 2</string>
+    <string name="player1TimeFinished">Έληξε ο χρόνος του</string>
+    <string name="player2TimeFinished">Έληξε ο χρόνος του</string>
+
+</resources>
