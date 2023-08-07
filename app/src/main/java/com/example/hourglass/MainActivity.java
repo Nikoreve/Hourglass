@@ -22,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -235,9 +236,9 @@ public class MainActivity extends MyAppCompatActivity {
         player2NameTiet = view.findViewById(R.id.tiet_setnofplayers_player2Name);
         doneBtn = view.findViewById(R.id.button_setnofplayers_doneDialog);
 
-        if(!getUserPrefPlayer1Name(this).isEmpty())
+        if (!getUserPrefPlayer1Name(this).isEmpty())
             player1NameTiet.setText(getUserPrefPlayer1Name(this));
-        if(!getUserPrefPlayer2Name(this).isEmpty())
+        if (!getUserPrefPlayer2Name(this).isEmpty())
             player2NameTiet.setText(getUserPrefPlayer2Name(this));
 
         noOfPlayersNP.setMinValue(1);
@@ -291,7 +292,7 @@ public class MainActivity extends MyAppCompatActivity {
                 editor1.apply();
 
 
-                SharedPreferences sharedPreferences2 = getSharedPreferences("Player2Name",MODE_PRIVATE);
+                SharedPreferences sharedPreferences2 = getSharedPreferences("Player2Name", MODE_PRIVATE);
                 SharedPreferences.Editor editor2 = sharedPreferences2.edit();
                 editor2.putString("Player2NameValue", player2Name);
                 editor2.apply();
@@ -342,13 +343,13 @@ public class MainActivity extends MyAppCompatActivity {
         return defaultValueWithPauseCheckBox = preferences_withPause_checkbox.getBoolean("withPauseCB", true);
     }
 
-    public String getUserPrefPlayer1Name(Context context){
+    public String getUserPrefPlayer1Name(Context context) {
         SharedPreferences preferences_playerName1 = context.getSharedPreferences("Player1Name", MODE_PRIVATE);
         return defaultValuePlayer1Name = preferences_playerName1.getString("Player1NameValue", " ");
     }
 
-    public String getUserPrefPlayer2Name(Context context){
-        SharedPreferences preferences_playerName2 = context.getSharedPreferences("Player2Name",MODE_PRIVATE);
+    public String getUserPrefPlayer2Name(Context context) {
+        SharedPreferences preferences_playerName2 = context.getSharedPreferences("Player2Name", MODE_PRIVATE);
         return defaultValuePlayer2Name = preferences_playerName2.getString("Player2NameValue", " ");
     }
 
@@ -366,9 +367,3 @@ public class MainActivity extends MyAppCompatActivity {
         }
     }
 }
-
-
-
-
-
-
