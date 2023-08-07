@@ -12,14 +12,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,21 +23,25 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
+
 public class OnePlayerWithPauseFragment extends MyFragment implements NotificationImplementation {
     private final String TAG = "Hourglass 1pWithPause";
     TextView onePlayerWithPauseMinutesTV, onePlayerWithPauseSecondsTV;
     ImageButton oneplayerWithPausePlayIB, oneplayerWithPausePauseIB, oneplayerWithPauseRestartIB;
-    boolean isPaused = false, isRunning = false, isStopped = false, isCreatedFirstTime = true;
-    long totalTimeInMillis, stopTimeInMillis = 999, leftTimeInSeconds,
-            leftTimeInMillis, endTimeInMillis;
+    long totalTimeInMillis, stopTimeInMillis = 999, leftTimeInSeconds, leftTimeInMillis, endTimeInMillis;
     long elapsedTime1 = 0, lastElapsedTime1 = 0, elapsedTime2 = 0, elapsedTime3 = 0;
     long totalTimeInMillisArchieve;
+    boolean isPaused = false, isRunning = false, isAfterOnStopMethod = false;
     Chronometer chronometer;
     Notification notification;
     NotificationManagerCompat notificationManagerCompat;
     NotificationManager notificationManager;
     private ProgressBar circular_progressBar;
-    private int progressStatus = 0, upTime = 1;
+    private int progressStatus = 0, upTime = 1, max, isCreatedFirstTime = 0;
     private long timeLeftInMillis;
     private ConstraintLayout buttonContainer;
     private BroadcastReceiver notificationUpdateReceiver = new BroadcastReceiver() {
@@ -104,7 +100,7 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
 //        int minutes = Integer.parseInt(onePlayerWithPauseMinutesTV.getText().toString());
 //        int seconds = Integer.parseInt(onePlayerWithPauseSecondsTV.getText().toString());
 
-        int max = minutes * 60 + seconds;
+        max = minutes * 60 + seconds;
         circular_progressBar.setMax(max);
         progressStatus = max;
         Log.d("progressStatus or max value is: ", "" + progressStatus);
@@ -115,7 +111,7 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         totalTimeInMillis = minutesInMillis + secondsInMillis;
         totalTimeInMillisArchieve = totalTimeInMillis;
         leftTimeInMillis = totalTimeInMillis;
-        endTimeInMillis = System.currentTimeMillis() + totalTimeInMillis;
+//        endTimeInMillis = System.currentTimeMillis() + totalTimeInMillis;
 
         Log.d("minutes: ", "" + minutes);
         Log.d("seconds: ", "" + seconds);
@@ -123,12 +119,8 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         Log.d("secondsInMllis: ", "" + secondsInMillis);
         Log.d("totalTimeInMillis: ", "" + totalTimeInMillis);
 
-//        Intent fullScreenIntent = new Intent(getActivity(), OnePlayerWithPauseFragment.class);
-//        PendingIntent fullScreenPendingIntent = PendingIntent.getActivity(getActivity(), 0, fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
         chronometer.setBase(SystemClock.elapsedRealtime() - totalTimeInMillis);
-        Log.d("chronometer getBase", "" + chronometer.getBase());
+//        Log.d("chronometer getBase", "" + chronometer.getBase());
 
         //        mChronometer.setBase(SystemClock.elapsedRealtime() - (nr_of_min * 60000 + nr_of_sec * 1000)))
 
@@ -157,35 +149,38 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
 //            }
 //        });
 
-        oneplayerWithPausePlayIB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        oneplayerWithPausePlayIB.setOnClickListener(this::playIBonClick);
+        oneplayerWithPausePauseIB.setOnClickListener(this::pauseIBonClick);
+        oneplayerWithPauseRestartIB.setOnClickListener(this::restartIBonClick);
 
+        return view;
+    }
+
+    public void playIBonClick(View view) {
 //                progressStatus = minutes * 60 + seconds;
 //                circular_progressBar.setProgress(progressStatus);
 
-//                totalTimeInMillis = minutesInMillis + secondsInMillis;
-                isRunning = true;
-                isPaused = false;
-                oneplayerWithPausePauseIB.setImageResource(R.drawable.round_pause_65);
-                leftTimeInSeconds = totalTimeInMillis / 1000;
+        isRunning = true;
+        isPaused = false;
+        oneplayerWithPausePauseIB.setImageResource(R.drawable.round_pause_65);
+//        leftTimeInSeconds = totalTimeInMillis / 1000;
 //                System.out.println("leftTimeInSeconds : "+leftTimeInSeconds);
 
-                chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-                    @Override
-                    public void onChronometerTick(Chronometer cArg) {
-                        lastElapsedTime1 = elapsedTime1;
-                        elapsedTime1 = chronometer.getBase() - SystemClock.elapsedRealtime();
-                        Log.d(TAG, "elapsedTime1: " + elapsedTime1);
-                        Log.d(TAG, "totalTimeInMillis: " + totalTimeInMillis);
-                        leftTimeInMillis = totalTimeInMillis - elapsedTime1;
-                        if (lastElapsedTime1 - elapsedTime1 > 999)
-                            showProgress(leftTimeInSeconds);
-                        else if (lastElapsedTime1 - elapsedTime1 == totalTimeInMillis || (lastElapsedTime1 - elapsedTime1 > 0 && lastElapsedTime1 - elapsedTime1 < 65)) {
-                            upTime++;
-                            if (upTime == 1 || upTime == 2)
-                                showProgress(leftTimeInSeconds);
-                        }
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer cArg) {
+
+                lastElapsedTime1 = elapsedTime1;
+                elapsedTime1 = chronometer.getBase() - SystemClock.elapsedRealtime();
+                Log.d(TAG, "elapsedTime1: " + elapsedTime1);
+                Log.d(TAG, "isCreatedFirstTime: " + isCreatedFirstTime);
+                Log.d(TAG, "totalTimeInMillis: " + totalTimeInMillis);
+                leftTimeInMillis = totalTimeInMillis - elapsedTime1;
+                if (lastElapsedTime1 - elapsedTime1 > 999) showProgress();
+                else if (lastElapsedTime1 - elapsedTime1 == totalTimeInMillis || (lastElapsedTime1 - elapsedTime1 > 0 && lastElapsedTime1 - elapsedTime1 < 65)) {
+                    upTime++;
+                    if (upTime == 1 || upTime == 2) showProgress();
+                }
 //                        elapsedTime1 = chronometer.getBase() + SystemClock.elapsedRealtime();
 //                        if (elapsedTime1 - lastElapsedTime1 > 999)
 //                            showProgress(leftTimeInSeconds);
@@ -194,10 +189,10 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
 //                            if (upTime == 1 || upTime == 2)
 //                                showProgress(leftTimeInSeconds);
 //                        }
-                        Log.d("lastElapsedTime1 is:", "" + lastElapsedTime1);
-                        Log.d("elapsedTime1 is:", "" + elapsedTime1);
-                        Log.d("SystemClock.elapsedRealtime():", "" + SystemClock.elapsedRealtime());
-                        Log.d("chronometer.getBase():", "" + chronometer.getBase());
+                Log.d("lastElapsedTime1 is:", "" + lastElapsedTime1);
+                Log.d("elapsedTime1 is:", "" + elapsedTime1);
+                Log.d("SystemClock.elapsedRealtime():", "" + SystemClock.elapsedRealtime());
+                Log.d("chronometer.getBase():", "" + chronometer.getBase());
 //                        progressStatus = (int) elapsedTime1 / 1000;
 //                        progressStatus--;
 //                        if(elapsedTime1 <= 2000)
@@ -211,82 +206,32 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
 //
 //                        circular_progressBar.setProgress(progressStatus);
 
-
-                        if (elapsedTime1 >= stopTimeInMillis) {
-//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                                NotificationChannel channel = new NotificationChannel("myCh", "My Channel", NotificationManager.IMPORTANCE_DEFAULT);
-//                                NotificationManager manager = getContext().getSystemService(NotificationManager.class);
-//                                manager.createNotificationChannel(channel);
-//                            }
-//
-//                            long min = elapsedTime1 / 60000;
-//                            long sec = (elapsedTime1 - min * 60000) / 1000;
-//                            long minPos = min < 0 ? -min : min;
-//                            long secPos = sec < 0 ? -sec : sec;
-//                            String mmin = minPos < 10 ? "0" + minPos : minPos + "";
-//                            String ssec = secPos < 10 ? "0" + secPos : secPos + "";
-//
-//                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "myCh")
-//                                    .setSmallIcon(R.drawable.hourglass_icon)
-//                                    .setContentTitle(getString(R.string.notificationTitleRunning))
-//                                    .setShowWhen(true)
-//                                    .setContentText(mmin + ":" + ssec + "")
-//                                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-//                                    .setSilent(true);
-//
-//                            notification = builder.build();
-////                            notification.defaults |= Notification.VISIBILITY_PUBLIC;
-//                            notificationManagerCompat = NotificationManagerCompat.from(getContext());
-//
-//                            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-//                                // TODO: Consider calling
-//                                //    ActivityCompat#requestPermissions
-//                                // here to request the missing permissions, and then overriding
-//                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//                                //                                          int[] grantResults)
-//                                // to handle the case where the user grants the permission. See the documentation
-//                                // for ActivityCompat#requestPermissions for more details.
-//                                return;
-//                            }
-//                            notificationManagerCompat.notify(1, notification);
-
-
-                            createNotification();
-
-//                             notificationServiceHourglass.onStartCommand();
-
-
-                        } else {
-                            isRunning = false;
-                            chronometer.stop();
-                            Toast.makeText(getActivity(), R.string.notificationTitleFinish, Toast.LENGTH_SHORT).show();
-                            oneplayerWithPausePauseIB.setClickable(false);
-                            NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "myCh")
-                                    .setSmallIcon(R.drawable.hourglass_icon)
-                                    .setContentTitle(getString(R.string.notificationTitleFinish))
-                                    .setShowWhen(true)
-                                    .setSilent(true)
-                                    .setContentText("00:00")
-                                    .setDefaults(Notification.DEFAULT_VIBRATE)
-                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                if (elapsedTime1 >= stopTimeInMillis) {
+                    createNotification();
+                } else {
+                    isRunning = false;
+                    chronometer.stop();
+                    Toast.makeText(getActivity(), R.string.notificationTitleFinish, Toast.LENGTH_SHORT).show();
+                    oneplayerWithPausePauseIB.setClickable(false);
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "myCh").setSmallIcon(R.drawable.hourglass_icon).setContentTitle(getString(R.string.notificationTitleFinish)).setShowWhen(true).setSilent(true).setContentText("00:00").setDefaults(Notification.DEFAULT_VIBRATE).setPriority(NotificationCompat.PRIORITY_DEFAULT)
 //                                    .setFullScreenIntent(fullScreenPendingIntent,true)
-                                    .setCategory(NotificationCompat.CATEGORY_ALARM);
+                            .setCategory(NotificationCompat.CATEGORY_ALARM);
 
-                            notification = builder.build();
+                    notification = builder.build();
 //                            notification.defaults |= Notification.VISIBILITY_PUBLIC;
-                            notificationManagerCompat = NotificationManagerCompat.from(getContext());
-                            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                                // TODO: Consider calling
-                                //    ActivityCompat#requestPermissions
-                                // here to request the missing permissions, and then overriding
-                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                //                                          int[] grantResults)
-                                // to handle the case where the user grants the permission. See the documentation
-                                // for ActivityCompat#requestPermissions for more details.
-                                return;
-                            }
-                            notificationManagerCompat.notify(1, notification);
-                        }
+                    notificationManagerCompat = NotificationManagerCompat.from(getContext());
+                    if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    notificationManagerCompat.notify(1, notification);
+                }
 //                        long time = totalTimeInMillis;
 //                        int h   = (int)(time /3600000);
 //                        int m = (int) time / 60000;
@@ -298,82 +243,71 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
 //                        String mm = m < 10 ? "0" + m : m + "";
 //                        String ss = s < 10 ? "0" + s : s + "";
 //                        cArg.setText(mm + ":" + ss);
-                    }
-                });
-                chronometer.setBase(SystemClock.elapsedRealtime() + totalTimeInMillis);
-                chronometer.setCountDown(true);
-                chronometer.start();
-
-                oneplayerWithPausePlayIB.setVisibility(View.GONE);
-                oneplayerWithPausePauseIB.setVisibility(View.VISIBLE);
-                oneplayerWithPauseRestartIB.setVisibility(View.VISIBLE);
             }
         });
+        chronometer.setBase(SystemClock.elapsedRealtime() + totalTimeInMillis);
+        chronometer.setCountDown(true);
+        chronometer.start();
 
-        oneplayerWithPausePauseIB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (!isPaused) {
-                    isPaused = true;
-                    isRunning = false;
-                    elapsedTime2 = chronometer.getBase() - SystemClock.elapsedRealtime();
-                    chronometer.stop();
-                    oneplayerWithPausePauseIB.setImageResource(R.drawable.round_play_arrow_65);
-//                    progressStatus = getProgressStatus();
-//                    circular_progressBar.setProgress(progressStatus);
-                    pauseNotification();
-                } else {
-                    isPaused = false;
-                    isRunning = true;
-//                    elapsedTime2 = chronometer.getBase() - SystemClock.elapsedRealtime();
-                    chronometer.setBase(SystemClock.elapsedRealtime() + elapsedTime2);
-                    chronometer.start();
-//                    progressStatus = getProgressStatus();
-//                    circular_progressBar.setProgress(progressStatus);
-                    oneplayerWithPausePauseIB.setImageResource(R.drawable.round_pause_65);
-                }
-//                isPaused = !isPaused;
-            }
-        });
-
-
-        oneplayerWithPauseRestartIB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isRunning = false;
-                chronometer.stop();
-                totalTimeInMillis = totalTimeInMillisArchieve;
-                chronometer.setBase(SystemClock.elapsedRealtime() + totalTimeInMillis + 1000);
-                leftTimeInMillis = totalTimeInMillis;
-
-                progressStatus = max;
-                circular_progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.circular_progressbar_green, getActivity().getTheme()));
-                circular_progressBar.setProgress(progressStatus, true);
-
-                elapsedTime1 = 0;
-//                lastElapsedTime1 = 0;
-                upTime = 0;
-
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "myCh");
-                notification = builder.build();
-                notificationManagerCompat = NotificationManagerCompat.from(getContext());
-                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                notificationManagerCompat.cancel(1);
-
-                oneplayerWithPausePauseIB.setClickable(true);
-                oneplayerWithPausePlayIB.setVisibility(View.VISIBLE);
-                oneplayerWithPausePauseIB.setVisibility(View.GONE);
-                oneplayerWithPauseRestartIB.setVisibility(View.GONE);
-            }
-        });
-
-        return view;
-
-
+        oneplayerWithPausePlayIB.setVisibility(View.GONE);
+        oneplayerWithPausePauseIB.setVisibility(View.VISIBLE);
+        oneplayerWithPauseRestartIB.setVisibility(View.VISIBLE);
     }
+
+    public void pauseIBonClick(View view) {
+
+        if (!isPaused) {
+            isPaused = true;
+            isRunning = false;
+            elapsedTime2 = chronometer.getBase() - SystemClock.elapsedRealtime();
+            chronometer.stop();
+            oneplayerWithPausePauseIB.setImageResource(R.drawable.round_play_arrow_65);
+//                    progressStatus = getProgressStatus();
+//                    circular_progressBar.setProgress(progressStatus);
+            pauseNotification();
+        } else {
+            isPaused = false;
+            isRunning = true;
+//                    elapsedTime2 = chronometer.getBase() - SystemClock.elapsedRealtime();
+            chronometer.setBase(SystemClock.elapsedRealtime() + elapsedTime2);
+            chronometer.start();
+//                    progressStatus = getProgressStatus();
+//                    circular_progressBar.setProgress(progressStatus);
+            oneplayerWithPausePauseIB.setImageResource(R.drawable.round_pause_65);
+        }
+//                isPaused = !isPaused;
+    }
+
+
+    public void restartIBonClick(View view) {
+        isRunning = false;
+        chronometer.stop();
+        totalTimeInMillis = totalTimeInMillisArchieve;
+        chronometer.setBase(SystemClock.elapsedRealtime() + totalTimeInMillis + 1000);
+        leftTimeInMillis = totalTimeInMillis;
+
+        progressStatus = max;
+        circular_progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.circular_progressbar_green, getActivity().getTheme()));
+        circular_progressBar.setProgress(progressStatus, true);
+
+        elapsedTime1 = 0;
+//                lastElapsedTime1 = 0;
+        upTime = 0;
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "myCh");
+        notification = builder.build();
+        notificationManagerCompat = NotificationManagerCompat.from(getContext());
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        notificationManagerCompat.cancel(1);
+
+        oneplayerWithPausePauseIB.setClickable(true);
+        oneplayerWithPausePlayIB.setVisibility(View.VISIBLE);
+        oneplayerWithPausePauseIB.setVisibility(View.GONE);
+        oneplayerWithPauseRestartIB.setVisibility(View.GONE);
+    }
+
 
     public void createNotification() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -385,8 +319,7 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         Intent intent = new Intent(getContext(), StartActivity.class);
 //        intent.putExtra("time",)
 //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0,
-                intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
 
 //        Intent broadcastIntent = new Intent(getContext(), NotificationReceiver.class);
 //        broadcastIntent.putExtra("MessageAddedHere", "It's comming from the notification");
@@ -414,23 +347,12 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         String mmin = minPos < 10 ? "0" + minPos : minPos + "";
         String ssec = secPos < 10 ? "0" + secPos : secPos + "";
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "myCh")
-                .setSmallIcon(R.drawable.hourglass_icon)
-                .setContentTitle(getString(R.string.notificationTitleRunning))
-                .setShowWhen(true)
-                .setContentText(mmin + ":" + ssec + "")
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setOngoing(true)
-                .setAutoCancel(true)
-                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .setOnlyAlertOnce(true)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "myCh").setSmallIcon(R.drawable.hourglass_icon).setContentTitle(getString(R.string.notificationTitleRunning)).setShowWhen(true).setContentText(mmin + ":" + ssec + "").setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setOngoing(true).setAutoCancel(true).setCategory(NotificationCompat.CATEGORY_MESSAGE).setOnlyAlertOnce(true)
 //                .setContentIntent(pendingIntent)
-                .setSilent(true)
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
+                .setSilent(true).setPriority(NotificationCompat.PRIORITY_HIGH);
 //                .addAction(R.drawable.hourglass_icon, "Pause", actionIntent);
         //builder.setTicker()
         notification = builder.build();
-//                            notification.defaults |= Notification.VISIBILITY_PUBLIC;
         notificationManager = (NotificationManager) getActivity().getSystemService(getActivity().NOTIFICATION_SERVICE);
 //    notificationManagerCompat =NotificationManagerCompat.from(getContext());
 
@@ -448,13 +370,10 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         notificationManager.notify(1, notification);
     }
 
-    //    @SuppressLint("UseCompatLoadingForDrawables")
-    private void showProgress(long leftTimeInSeconds) {
 
-//        for (long i = leftTimeInSeconds; i > 0; i--) {
+    private void showProgress() {
 
         if (!isPaused) {
-//            progressStatus = (int) elapsedTime1;
 //            Log.d(TAG,"elapsedTime3 : "+elapsedTime3);
             progressStatus--;
             if (getElapsedTime1() <= 2000)
@@ -482,12 +401,7 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         String ssec = secPos < 10 ? "0" + secPos : secPos + "";
 
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "myCh")
-                .setSmallIcon(R.drawable.hourglass_icon)
-                .setContentTitle(getString(R.string.notificationTitleStop))
-                .setShowWhen(true)
-                .setSilent(true)
-                .setContentText(mmin + ":" + ssec + "");
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), "myCh").setSmallIcon(R.drawable.hourglass_icon).setContentTitle(getString(R.string.notificationTitleStop)).setShowWhen(true).setSilent(true).setContentText(mmin + ":" + ssec + "");
 
         notification = builder.build();
 //                            notification.defaults |= Notification.VISIBILITY_PUBLIC;
@@ -519,24 +433,25 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
     public void onPause() {
         super.onPause();
 //        chronometer.stop();
-//        pauseNotification();
+        pauseNotification();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-//        if(!isCreatedFirstTime) {
+//        Toast.makeText(getActivity(), "is onStop called", Toast.LENGTH_SHORT).show();
+//        elapsedTime3 = -(chronometer.getBase() - SystemClock.elapsedRealtime());
         elapsedTime3 = chronometer.getBase() - SystemClock.elapsedRealtime();
-        isStopped = true;
+        leftTimeInMillis = totalTimeInMillis - elapsedTime3;
+        isAfterOnStopMethod = true;
         chronometer.stop();
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("timerPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isCreatedFirstTime", isCreatedFirstTime);
+        editor.putInt("isCreatedFirst", isCreatedFirstTime);
         editor.putLong("mtimeLeft", leftTimeInMillis);
-        editor.putLong("mtimeEnd", endTimeInMillis);
         editor.putLong("elapsedTime3", elapsedTime3);
         editor.putBoolean("timerRunning", isRunning);
-        editor.putBoolean("timerStopped", isStopped);
+        editor.putBoolean("timerStopped", isAfterOnStopMethod);
         editor.apply();
 //        }
 //        isCreatedFirstTime = false;
@@ -548,38 +463,56 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         super.onStart();
 //        Toast.makeText(getActivity(), "After change orientation", Toast.LENGTH_SHORT).show();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("timerPref", Context.MODE_PRIVATE);
-        leftTimeInMillis = sharedPreferences.getLong("mtimeLeft", totalTimeInMillis);
         stopTimeInMillis = 999;
-        isCreatedFirstTime = sharedPreferences.getBoolean("isCreatedFirstTime", true);
+        leftTimeInMillis = sharedPreferences.getLong("mtimeLeft", totalTimeInMillis);
+        isCreatedFirstTime = sharedPreferences.getInt("isCreatedFirst", 0);
         elapsedTime3 = sharedPreferences.getLong("elapsedTime3", 0);
         isRunning = sharedPreferences.getBoolean("timerRunning", false);
-//        isStopped = sharedPreferences.getBoolean("timerStopped", false);
+        isAfterOnStopMethod = sharedPreferences.getBoolean("timerStopped", false);
+        Log.d(TAG, "elapsedTime3 is: " + elapsedTime3);
 
-        if (!isCreatedFirstTime) {
-            if (isStopped) {
-                isStopped = false;
+//        if(getActivity() != null && getActivity().getCallingActivity() != null && getActivity().getCallingActivity().getClassName().equals(MainActivity.class.getName())){
+//        if (getActivity() != null) {
+//            if (getActivity().getCallingActivity() != null) {
+//                if (getActivity().getCallingActivity().getClassName().equals(MainActivity.class.getName())) {
+//                    isCreatedFirstTime = 0;
+//                }
+//            }
+//        }
+        Bundle args = getArguments();
+        if( args != null && args.getBoolean("resetFirstTime") ){
+            isCreatedFirstTime = 0;
+            args.putBoolean("resetFirstTime",false);
+        }
+
+        if (isCreatedFirstTime != 0) {
+            if (isAfterOnStopMethod) {
+                isAfterOnStopMethod = false;
                 if (isRunning) {
-//            endTimeInMillis = sharedPreferences.getLong("mtimeEnd", 0);
-//            timeLeftInMillis = endTimeInMillis - System.currentTimeMillis();
-                    if (leftTimeInMillis <= stopTimeInMillis) {
+                    if (elapsedTime3 <= stopTimeInMillis) {
                         Log.d(TAG, "leftTimeInMillis0: " + leftTimeInMillis);
                         isRunning = false;
-//                    timeLeftInMillis = 0;
-                        oneplayerWithPauseRestartIB.callOnClick();
+                        restartIBonClick(getView());
                     } else {
                         Log.d(TAG, "leftTimeInMillis: " + leftTimeInMillis);
-                        chronometer.setBase(SystemClock.elapsedRealtime() - leftTimeInMillis);
-                        totalTimeInMillis = leftTimeInMillis;
-                        oneplayerWithPausePlayIB.callOnClick();
-//                    chronometer.setCountDown(true);
-//                    chronometer.start();
-//                    chronometer.setBase(SystemClock.elapsedRealtime() - elapsedTime1);
+                        totalTimeInMillis = elapsedTime3;
+                        playIBonClick(getView());
                     }
+                } else{
+//                    Log.d(TAG, "leftTimeInMillis: " + leftTimeInMillis);
+                    totalTimeInMillis = elapsedTime3;
+//                    playIBonClick(getView());
+                    isPaused = false;
+//                    chronometer.setBase(SystemClock.elapsedRealtime() - totalTimeInMillis);
+                    chronometer.setBase(SystemClock.elapsedRealtime() + elapsedTime3);
+                    chronometer.setCountDown(true);
+                    chronometer.start();
+                    pauseIBonClick(getView());
                 }
 //        createNotification();
             }
         }
-        isCreatedFirstTime = false;
+        isCreatedFirstTime++;
     }
 
 
@@ -596,6 +529,7 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
 
 //        stopNotification();
     }
+
 
     private int getProgressStatus() {
         Log.d(TAG, "progressStatus " + progressStatus);

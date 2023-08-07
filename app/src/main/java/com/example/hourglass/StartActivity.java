@@ -1,10 +1,6 @@
 package com.example.hourglass;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.CheckBox;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -30,6 +26,7 @@ public class StartActivity extends MyAppCompatActivity {
             }
 
 
+
             if (mainActivityObject.getUserPrefNoOfPlayersNP(this) == 1)
                 if (mainActivityObject.getUserPrefWithPauseCB(this))
                     fragment = new OnePlayerWithPauseFragment();
@@ -39,6 +36,10 @@ public class StartActivity extends MyAppCompatActivity {
                 fragment = new TwoPlayersWithPauseFragment();
             else
                 fragment = new TwoPlayersNoPauseFragment();
+
+            Bundle args = new Bundle();
+            args.putBoolean("resetFirstTime", true);
+            fragment.setArguments(args);
 
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
