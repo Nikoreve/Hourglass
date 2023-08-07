@@ -35,11 +35,11 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
     private final String TAG = "Hourglass 1pWithPause";
     TextView onePlayerWithPauseMinutesTV, onePlayerWithPauseSecondsTV;
     ImageButton oneplayerWithPausePlayIB, oneplayerWithPausePauseIB, oneplayerWithPauseRestartIB;
-    boolean isPaused = false, isRunning = false, isStopped = false;
+    boolean isPaused = false, isRunning = false, isStopped = false, isCreatedFirstTime = true;
     long totalTimeInMillis, stopTimeInMillis = 999, leftTimeInSeconds,
             leftTimeInMillis, endTimeInMillis;
-    long elapsedTime1 = 0, lastElapsedTime1 = 0, elapsedTime2 = 0;
-   long totalTimeInMillisArchieve;
+    long elapsedTime1 = 0, lastElapsedTime1 = 0, elapsedTime2 = 0, elapsedTime3 = 0;
+    long totalTimeInMillisArchieve;
     Chronometer chronometer;
     Notification notification;
     NotificationManagerCompat notificationManagerCompat;
@@ -176,6 +176,8 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
                     public void onChronometerTick(Chronometer cArg) {
                         lastElapsedTime1 = elapsedTime1;
                         elapsedTime1 = chronometer.getBase() - SystemClock.elapsedRealtime();
+                        Log.d(TAG, "elapsedTime1: " + elapsedTime1);
+                        Log.d(TAG, "totalTimeInMillis: " + totalTimeInMillis);
                         leftTimeInMillis = totalTimeInMillis - elapsedTime1;
                         if (lastElapsedTime1 - elapsedTime1 > 999)
                             showProgress(leftTimeInSeconds);
@@ -516,24 +518,28 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
     @Override
     public void onPause() {
         super.onPause();
-        chronometer.stop();
+//        chronometer.stop();
 //        pauseNotification();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        elapsedTime2 = chronometer.getBase() - SystemClock.elapsedRealtime();
+//        if(!isCreatedFirstTime) {
+        elapsedTime3 = chronometer.getBase() - SystemClock.elapsedRealtime();
         isStopped = true;
         chronometer.stop();
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("timerPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isCreatedFirstTime", isCreatedFirstTime);
         editor.putLong("mtimeLeft", leftTimeInMillis);
         editor.putLong("mtimeEnd", endTimeInMillis);
-        editor.putLong("elapsedTime2", elapsedTime2);
+        editor.putLong("elapsedTime3", elapsedTime3);
         editor.putBoolean("timerRunning", isRunning);
         editor.putBoolean("timerStopped", isStopped);
         editor.apply();
+//        }
+//        isCreatedFirstTime = false;
 //        pauseNotification();
     }
 
@@ -544,32 +550,36 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("timerPref", Context.MODE_PRIVATE);
         leftTimeInMillis = sharedPreferences.getLong("mtimeLeft", totalTimeInMillis);
         stopTimeInMillis = 999;
-//        elapsedTime2 = sharedPreferences.getLong("elapsedTime2", 0);
+        isCreatedFirstTime = sharedPreferences.getBoolean("isCreatedFirstTime", true);
+        elapsedTime3 = sharedPreferences.getLong("elapsedTime3", 0);
         isRunning = sharedPreferences.getBoolean("timerRunning", false);
-        isStopped = sharedPreferences.getBoolean("timerStopped", false);
+//        isStopped = sharedPreferences.getBoolean("timerStopped", false);
 
-        if (isStopped) {
-            isStopped = false;
-            if (isRunning) {
+        if (!isCreatedFirstTime) {
+            if (isStopped) {
+                isStopped = false;
+                if (isRunning) {
 //            endTimeInMillis = sharedPreferences.getLong("mtimeEnd", 0);
 //            timeLeftInMillis = endTimeInMillis - System.currentTimeMillis();
-                if (leftTimeInMillis <= stopTimeInMillis) {
-                    Log.d(TAG,"leftTimeInMillis0: "+leftTimeInMillis);
-                    isRunning = false;
+                    if (leftTimeInMillis <= stopTimeInMillis) {
+                        Log.d(TAG, "leftTimeInMillis0: " + leftTimeInMillis);
+                        isRunning = false;
 //                    timeLeftInMillis = 0;
-                    oneplayerWithPauseRestartIB.callOnClick();
-                } else {
-                    Log.d(TAG,"leftTimeInMillis: "+leftTimeInMillis);
-                    chronometer.setBase(SystemClock.elapsedRealtime() - leftTimeInMillis);
-                    totalTimeInMillis = leftTimeInMillis;
-                    oneplayerWithPausePlayIB.callOnClick();
+                        oneplayerWithPauseRestartIB.callOnClick();
+                    } else {
+                        Log.d(TAG, "leftTimeInMillis: " + leftTimeInMillis);
+                        chronometer.setBase(SystemClock.elapsedRealtime() - leftTimeInMillis);
+                        totalTimeInMillis = leftTimeInMillis;
+                        oneplayerWithPausePlayIB.callOnClick();
 //                    chronometer.setCountDown(true);
 //                    chronometer.start();
 //                    chronometer.setBase(SystemClock.elapsedRealtime() - elapsedTime1);
+                    }
                 }
 //        createNotification();
             }
         }
+        isCreatedFirstTime = false;
     }
 
 
