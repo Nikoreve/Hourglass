@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondary_sixth"
+    android:animateLayoutChanges="true"
     tools:context=".OnePlayerWithPauseFragment">
 
     <FrameLayout
-        android:id="@+id/relativeLayout_1playerWithPause"
+        android:id="@+id/relativeLayout_1playerNoPause"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:background="@color/secondary_sixth"
@@ -19,7 +20,7 @@
 
 
         <ProgressBar
-            android:id="@+id/progressBar_fopwp"
+            android:id="@+id/progressBar_fopnp"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="200dp"
             android:layout_height="match_parent"
@@ -46,42 +47,6 @@
             android:gravity="center"
             android:textSize="24sp"
             android:textStyle="bold"></Chronometer>
-
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/textView_1playerWithPause_minutes"-->
-        <!--            android:layout_width="80dp"-->
-        <!--            android:layout_height="60dp"-->
-        <!--            android:gravity="center"-->
-        <!--            android:letterSpacing="0.2"-->
-        <!--            android:text="KAti1"-->
-        <!--            android:textColor="@color/textcolor_second"-->
-        <!--            android:textSize="24dp"-->
-        <!--            android:textStyle="bold"></TextView>-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/textView_1playerWithPause_colon"-->
-        <!--            android:layout_width="10dp"-->
-        <!--            android:layout_height="60dp"-->
-        <!--            android:layout_toRightOf="@id/textView_1playerWithPause_minutes"-->
-        <!--            android:gravity="center"-->
-        <!--            android:text=":"-->
-        <!--            android:textColor="@color/textcolor_second"-->
-        <!--            android:textSize="24dp"-->
-        <!--            android:textStyle="bold"></TextView>-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/textView_1playerWithPause_seconds"-->
-        <!--            android:layout_width="80dp"-->
-        <!--            android:layout_height="60dp"-->
-        <!--            android:layout_toRightOf="@id/textView_1playerWithPause_colon"-->
-        <!--            android:gravity="center"-->
-        <!--            android:letterSpacing="0.2"-->
-        <!--            android:text="KAti2"-->
-        <!--            android:textColor="@color/textcolor_second"-->
-        <!--            android:textSize="24dp"-->
-        <!--            android:textStyle="bold"></TextView>-->
-
     </FrameLayout>
 
 
@@ -90,27 +55,14 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginEnd="10dp"
+        android:animateLayoutChanges="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/relativeLayout_1playerWithPause"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout_1playerNoPause"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton_1playerWithPause_pause"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="50dp"
-            android:background="@drawable/button_selector"
-            android:backgroundTintMode="@color/white"
-            android:src="@drawable/round_pause_65"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton_1playerWithPause_play"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageButton>
-
-        <ImageButton
-            android:id="@+id/imageButton_1playerWithPause_play"
+            android:id="@+id/imageButton_1playerNoPause_play"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:background="@drawable/button_selector"
@@ -121,17 +73,17 @@
             app:layout_constraintTop_toTopOf="parent"></ImageButton>
 
         <ImageButton
-            android:id="@+id/imageButton_1playerWithPause_restart"
+            android:id="@+id/imageButton_1playerNoPause_restart"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginTop="280dp"
             android:background="@drawable/button_selector"
             android:backgroundTintMode="@color/white"
             android:src="@drawable/round_replay_65"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageButton_1playerWithPause_play"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"></ImageButton>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

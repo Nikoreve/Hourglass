@@ -1,5 +1,6 @@
 package com.example.hourglass;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -30,4 +31,15 @@ public class TwoPlayersNoPauseFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_two_players_no_pause, container, false);
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        if(getActivity() != null){
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+        // if you want to enable the turn orientation then in onPause method you should write:
+        // getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
+    }
+
 }

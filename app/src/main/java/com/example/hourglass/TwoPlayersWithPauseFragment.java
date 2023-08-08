@@ -1,5 +1,6 @@
 package com.example.hourglass;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -61,7 +62,7 @@ public class TwoPlayersWithPauseFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_two_players_with_pause, container, false);
 
-        pauseIB1 = view.findViewById(R.id.imageButton_2playersWithPause_pause1);
+                pauseIB1 = view.findViewById(R.id.imageButton_2playersWithPause_pause1);
         playIB1 = view.findViewById(R.id.imageButton_2playersWithPause_play1);
         restartIB1 = view.findViewById(R.id.imageButton_2playersWithPause_restart1);
         pauseIB2 = view.findViewById(R.id.imageButton_2playersWithPause_pause2);
@@ -486,6 +487,16 @@ public class TwoPlayersWithPauseFragment extends Fragment {
 
     public long getElapsedTime1_chr2() {
         return elapsedTime1_chr2;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        if(getActivity() != null){
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+        // if you want to enable the turn orientation then in onPause method you should write:
+        // getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
     }
 
 }
