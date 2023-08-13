@@ -65,10 +65,4 @@ public class LanguageItem extends MyAppCompatActivity {
 
 
     }
-
-//    ListView listView = findViewById(R.id.listView);
-//    List<LanguageItem> itemList = new ArrayList<>();
-//
-//    itemList.add(new Languageitem(R.string.textEnglishLanguage,R.drawable.greece));
-//    itemList.add(new LanguageItem(R.string.textGreekLanguage,R.drawable.uk));
 }

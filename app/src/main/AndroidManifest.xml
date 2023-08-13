@@ -7,8 +7,6 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SENDTO" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
-
-
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
@@ -22,8 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hourglass"
         tools:targetApi="31">
-<!--        <service android:name=".NotificationServiceHourglass" />-->
-
+        <activity
+            android:name=".ManualActivity"
+            android:exported="false" />
+        <!-- <service android:name=".NotificationServiceHourglass" /> -->
         <activity
             android:name=".StartActivity"
             android:exported="false"
@@ -37,10 +37,12 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".NotificationReceiver"/>
+
+        <receiver android:name=".NotificationReceiver" />
     </application>
 
 </manifest>
