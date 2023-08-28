@@ -1,4 +1,4 @@
-# Hourglass1
+# Hourglass
 
 In commit's description:  
 (+) : added  
