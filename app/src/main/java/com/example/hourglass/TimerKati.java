@@ -43,8 +43,8 @@
 //    public void onCreate() {
 //        super.onCreate();
 //
-//        int minutes = mainActivityObject.getUserPrefMinutesNP(getApplicationContext());
-//        int seconds = mainActivityObject.getUserPrefSecondsNP(getApplicationContext());
+//        int minutes = mainActivityObject.getUserPref1MinutesNP(getApplicationContext());
+//        int seconds = mainActivityObject.getUserPrefSecondsNP1(getApplicationContext());
 ////        int minutes = Integer.parseInt(onePlayerWithPauseMinutesTV.getText().toString());
 ////        int seconds = Integer.parseInt(onePlayerWithPauseSecondsTV.getText().toString());
 //        long minutesInMillis = minutes * 60 * 1000;

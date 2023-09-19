@@ -34,6 +34,7 @@ public class TwoPlayersWithPauseFragment extends Fragment {
     AnimatedVectorDrawableCompat avdc;
     int valueTime = 0, max = 0;
     int upTime_Chr1 = 1, upTime_Chr2 = 1;
+    private int minutes, seconds, checkedRadiobutton;
     private ProgressBar circular_progressBar1, circular_progressBar2;
     private int progressStatus1 = 0, progressStatus2 = 0;
 
@@ -55,14 +56,13 @@ public class TwoPlayersWithPauseFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_two_players_with_pause, container, false);
 
-                pauseIB1 = view.findViewById(R.id.imageButton_2playersWithPause_pause1);
+        pauseIB1 = view.findViewById(R.id.imageButton_2playersWithPause_pause1);
         playIB1 = view.findViewById(R.id.imageButton_2playersWithPause_play1);
         restartIB1 = view.findViewById(R.id.imageButton_2playersWithPause_restart1);
         pauseIB2 = view.findViewById(R.id.imageButton_2playersWithPause_pause2);
@@ -93,17 +93,33 @@ public class TwoPlayersWithPauseFragment extends Fragment {
         else
             player1NameTxt.setText(player1Name);
 
-        if(player2Name.isEmpty())
+        if (player2Name.isEmpty())
             player2NameTxt.setText(R.string.player2NameTxt);
         else
             player2NameTxt.setText(player2Name);
 
-        int minutes = mainActivityObject.getUserPrefMinutesNP(getContext());
-        int seconds = mainActivityObject.getUserPrefSecondsNP(getContext());
+        checkedRadiobutton = mainActivityObject.getUserPrefCurrentRadiobuttonChecked(getContext());
+        if (checkedRadiobutton == 2131296651) {
+            minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
+        } else if (checkedRadiobutton == 2131296652) {
+            minutes = mainActivityObject.getUserPref2MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref2SecondsNP(getContext());
+        } else if (checkedRadiobutton == 2131296653) {
+            minutes = mainActivityObject.getUserPref3MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref3SecondsNP(getContext());
+        } else {
+            // checkedRadiobutton == -1
+            System.out.print("The checkedRadiobutton probably is: -1");
+            minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
+        }
+//        int minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
+//        int seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
 
-         max = minutes * 60 + seconds;
+        max = minutes * 60 + seconds;
 //        System.out.print("max value: "+max);
-        Log.d(TAG, "max value: "+max);
+        Log.d(TAG, "max value: " + max);
         circular_progressBar1.setMax(max);
         circular_progressBar2.setMax(max);
         progressStatus1 = max;
@@ -124,7 +140,7 @@ public class TwoPlayersWithPauseFragment extends Fragment {
         return view;
     }
 
-    public void onChronometerTick1(View view){
+    public void onChronometerTick1(View view) {
         chronometer1.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -199,8 +215,8 @@ public class TwoPlayersWithPauseFragment extends Fragment {
         restartIB2.setClickable(true);
 
 
-        if(isChr2Inaugurate){
-           chronometer2.stop();
+        if (isChr2Inaugurate) {
+            chronometer2.stop();
         }
 
         isPaused_chr1 = false;
@@ -288,9 +304,9 @@ public class TwoPlayersWithPauseFragment extends Fragment {
             pauseIB2.setEnabled(true);
             isChr2Running = true;
 
-            if(!isChr2Inaugurate){
-                onChronometerTick2(view);}
-            else {
+            if (!isChr2Inaugurate) {
+                onChronometerTick2(view);
+            } else {
                 chronometer2.setBase(SystemClock.elapsedRealtime() + elapsedTime2_chr2);
                 chronometer2.start();
             }
@@ -330,7 +346,7 @@ public class TwoPlayersWithPauseFragment extends Fragment {
         valueTime = 0;
         changeTurn = false;
 
-        if(isChr1Inaugurate) {
+        if (isChr1Inaugurate) {
             chronometer1.stop();
             chronometer1.setBase(SystemClock.elapsedRealtime() + totalTimeInMillis);  // + 1000
             isChr1Inaugurate = false;
@@ -343,7 +359,7 @@ public class TwoPlayersWithPauseFragment extends Fragment {
         upTime_Chr1 = 0;
 //                lastElapsedTime1 = 0;
 
-        if(isChr2Inaugurate) {
+        if (isChr2Inaugurate) {
             chronometer2.stop();
             chronometer2.setBase(SystemClock.elapsedRealtime() + totalTimeInMillis); // + 1000
             isChr2Inaugurate = false;
@@ -370,7 +386,7 @@ public class TwoPlayersWithPauseFragment extends Fragment {
         restartIB1.setClickable(true);
         restartIB2.setClickable(true);
 
-        if(isChr1Inaugurate)
+        if (isChr1Inaugurate)
             chronometer1.stop();
 
         isPaused_chr2 = false;
@@ -445,11 +461,12 @@ public class TwoPlayersWithPauseFragment extends Fragment {
             pauseIB1.setEnabled(true);
             isChr1Running = true;
 
-            if(!isChr1Inaugurate){
-                onChronometerTick1(view);}
-            else{
+            if (!isChr1Inaugurate) {
+                onChronometerTick1(view);
+            } else {
                 chronometer1.setBase(SystemClock.elapsedRealtime() + elapsedTime2_chr1);
-                chronometer1.start();}
+                chronometer1.start();
+            }
         }
     }
 
@@ -490,9 +507,9 @@ public class TwoPlayersWithPauseFragment extends Fragment {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
-        if(getActivity() != null){
+        if (getActivity() != null) {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         // if you want to enable the turn orientation then in onPause method you should write:

@@ -8,7 +8,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -19,10 +18,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.NumberPicker;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -34,11 +32,13 @@ public class MainActivity extends MyAppCompatActivity {
     CheckBox checkBoxWithPause;
     NumberPicker minutesNP, secondsNP, noOfPlayersNP;
     Button startBtn, setTimeBtn, playersBtn, settingsBtn, quitBtn, doneBtn;
+    Button buttonPref1, buttonPref2, buttonPref3;
+    RadioGroup radioGroup;
     TextInputEditText player1NameTiet, player2NameTiet;
-    Boolean chckBox, checkBoxValue, getValueWithPauseCheckBox = false, defaultValueWithPauseCheckBox = true;
-    Boolean isMinutesNPfirstTime = true, isSecondsNPfirstTime = true, isNoOfPlayersNPfirstTime = true, isWithPauseCheckBox = true;
+    Boolean chckBox, checkBoxValue, getValueWithPauseCheckBox = true;
+    Boolean isMinutesNPfirstTime = true, isSecondsNPfirstTime = true, isNoOfPlayersNPfirstTime = true;
     TextView onePlayerWithPauseMinutesTV, getOnePlayerWithPauseSecondsTV;
-    ImageButton oneplayerWithPauseResumePasueIB;
+    int currentCheckedRadiobutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,48 +57,24 @@ public class MainActivity extends MyAppCompatActivity {
         quitBtn = findViewById(R.id.quit_button);
         //quitBtn.setOnClickListener((View.OnClickListener) this);
 
-
-        setTimeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSetTimeDialog();
-            }
-        });
-
-        playersBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showNumberOfPlayersDialog();
-            }
-        });
-
-        startBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                setActivityToStart();
-                startActivity(new Intent(MainActivity.this, StartActivity.class));
-            }
-        });
-
     }
 
     @SuppressLint("NonConstantResourceId")
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.start_button:
-                //Intent intent = new Intent(MainActivity.this,kati);
+                startActivity(new Intent(MainActivity.this, StartActivity.class));
                 break;
             case R.id.setTime_button:
-                //showSetTimeDialog();
+                showSetTimeDialog();
 //                startActivity(new Intent(MainActivity.this, SetTimeActivity.class));
                 break;
             case R.id.players_button:
-                //Intent intent = new Intent(MainActivity.this,kati);
+                showNumberOfPlayersDialog();
                 break;
             case R.id.settings_button:
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivityForResult(intent, REQUEST_LANGUAGE);
-
 //                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                 break;
             case R.id.quit_button:
@@ -108,31 +84,16 @@ public class MainActivity extends MyAppCompatActivity {
 
     }
 
-    public void setActivityToStart() {
-//        setContentView(R.layout.one_player_with_pause);
-//
-//        onePlayerWithPauseMinutesTV = findViewById(R.id.textView_1playerWithPause_minutes);
-//        getOnePlayerWithPauseSecondsTV = findViewById(R.id.textView_1playerWithPause_seconds);
-//        oneplayerWithPausePlayIB = findViewById(R.id.imageButton_1playerWithPause_play);
-//
-//        onePlayerWithPauseMinutesTV.setText(getMinutesValue());
-//        if (getSecondsValue().length() == 1)
-//            getOnePlayerWithPauseSecondsTV.setText("0" + getSecondsValue());
-//        else
-//            getOnePlayerWithPauseSecondsTV.setText(getSecondsValue());
-
-    }
-
     public String getMinutesValue() {
 //        SharedPreferences preferences1 = getSharedPreferences("MinutesPref", MODE_PRIVATE);
 //        defaultValueMinutesNP = preferences1.getInt("minutesNPvalue", 0);
 //        return String.valueOf(defaultValueMinutesNP);
-        return String.valueOf(getUserPrefMinutesNP(this));
+        return String.valueOf(getUserPref1MinutesNP(this));
     }
 
     public String getSecondsValue() {
 //        return String.valueOf(secondsNP);
-        return String.valueOf(getUserPrefSecondsNP(this));
+        return String.valueOf(getUserPref1SecondsNP(this));
     }
 
     public int getNumberOfPlayers() {
@@ -144,6 +105,7 @@ public class MainActivity extends MyAppCompatActivity {
         return getUserPrefWithPauseCB(this);
     }
 
+    @SuppressLint("MissingInflatedId")
     private void showSetTimeDialog() {
         ConstraintLayout setTimeConstraintLayout = findViewById(R.id.setTimeConstraintLayout);
         View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.set_time_custom_dialog, setTimeConstraintLayout);
@@ -151,6 +113,10 @@ public class MainActivity extends MyAppCompatActivity {
         minutesNP = view.findViewById(R.id.numberPicker_setTime_minutespicker);
         secondsNP = view.findViewById(R.id.numberPicker_setTime_secondspicker);
         checkBoxWithPause = view.findViewById(R.id.checkBox_setTime_withpause);
+        radioGroup = view.findViewById(R.id.radioGroup_setTime);
+        buttonPref1 = view.findViewById(R.id.radiobutton_setTime_customSet1);
+        buttonPref2 = view.findViewById(R.id.radiobutton_setTime_customSet2);
+        buttonPref3 = view.findViewById(R.id.radiobutton_setTime_customSet3);
 
         minutesNP.setMinValue(00);
         minutesNP.setMaxValue(59);
@@ -158,58 +124,81 @@ public class MainActivity extends MyAppCompatActivity {
         secondsNP.setMinValue(00);
         secondsNP.setMaxValue(59);
 
-        //Kane na doylepsei to checkbox preference
-        checkBoxValue = isWithPauseCheckBox ? defaultValueWithPauseCheckBox : getValueWithPauseCheckBox;
+        System.out.println("currentCheckedRadiobutton is: "+currentCheckedRadiobutton);
+        radioGroup.check(currentCheckedRadiobutton);
+        if (currentCheckedRadiobutton == 2131296651) {
+            getUserPref1MinutesNP(getApplicationContext());
+            getUserPref1SecondsNP(getApplicationContext());
+            settingMinutes("MinutesPref1", "minutesNPvalue1");
+            settingSeconds("SecondsPref1", "secondsNPvalue1");
+        } else if (currentCheckedRadiobutton == 2131296652) {
+            getUserPref2MinutesNP(getApplicationContext());
+            getUserPref2SecondsNP(getApplicationContext());
+            settingMinutes("MinutesPref2", "minutesNPvalue2");
+            settingSeconds("SecondsPref2", "secondsNPvalue2");
+        } else if (currentCheckedRadiobutton == 2131296653) {
+            getUserPref3MinutesNP(getApplicationContext());
+            getUserPref3SecondsNP(getApplicationContext());
+            settingMinutes("MinutesPref3", "minutesNPvalue3");
+            settingSeconds("SecondsPref3", "secondsNPvalue3");
+        } else {
+            // currentCheckedRadiobutton == -1
+            System.out.println("The checkedRadiobuttonPrefID probably is: -1");
+            getUserPref1MinutesNP(getApplicationContext());
+            getUserPref1SecondsNP(getApplicationContext());
+            settingMinutes("MinutesPref1", "minutesNPvalue1");
+            settingSeconds("SecondsPref1", "secondsNPvalue1");
+        }
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup rdgrp0, int id) {
+                currentCheckedRadiobutton = id;
+//                boolean checkedRadiobutton = ((RadioButton) view).isChecked();
+                switch (rdgrp0.getCheckedRadioButtonId()) {
+                    case R.id.radiobutton_setTime_customSet1:
+//                    case 2131296651:
+                        System.out.println("radioGroup.getCheckedRadioButtonId()"+ radioGroup.getCheckedRadioButtonId()+" for 0");
+                        getUserPref1SecondsNP(getApplicationContext());
+                        getUserPref1MinutesNP(getApplicationContext());
+                        settingMinutes("MinutesPref1", "minutesNPvalue1");
+                        settingSeconds("SecondsPref1", "secondsNPvalue1");
+                        break;
+                    case R.id.radiobutton_setTime_customSet2:
+//                    case 2131296652:
+                        System.out.println("radioGroup.getCheckedRadioButtonId()"+ radioGroup.getCheckedRadioButtonId() +" for 1");
+                        getUserPref2SecondsNP(getApplicationContext());
+                        getUserPref2MinutesNP(getApplicationContext());
+                        settingMinutes("MinutesPref2", "minutesNPvalue2");
+                        settingSeconds("SecondsPref2", "secondsNPvalue2");
+                        break;
+
+                    case R.id.radiobutton_setTime_customSet3:
+//                    case 2131296653:
+                        System.out.println("radioGroup.getCheckedRadioButtonId()"+ radioGroup.getCheckedRadioButtonId()+" for 2");
+                        getUserPref3SecondsNP(getApplicationContext());
+                        getUserPref3MinutesNP(getApplicationContext());
+                        settingMinutes("MinutesPref3", "minutesNPvalue3");
+                        settingSeconds("SecondsPref3", "secondsNPvalue3");
+                        break;
+                }
+            }
+        });
+
+        checkBoxValue = getValueWithPauseCheckBox;
         checkBoxWithPause.setChecked(checkBoxValue);
 
         checkBoxWithPause.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                isWithPauseCheckBox = false;
                 getValueWithPauseCheckBox = isChecked;
                 Log.d("onCheckedChanged getValueWithPauseCheckBox state is:", "" + getValueWithPauseCheckBox);
 //                checkBoxWithPause.setChecked(isChecked);
                 SharedPreferences sharedPreferences_withPause_CheckBox = getSharedPreferences("withPauseChkBox", MODE_PRIVATE);
                 SharedPreferences.Editor editorCB = sharedPreferences_withPause_CheckBox.edit();
                 editorCB.putBoolean("withPauseCB", getValueWithPauseCheckBox);
-//              Log.d("SharedPReferences editorCB state is:",""+ getValueWithPauseCheckBox);
                 editorCB.apply();
             }
         });
-
-
-        minNPvalue = isMinutesNPfirstTime ? defaultValueMinutesNP : Integer.parseInt(getValueMinutesNP);
-        minutesNP.setValue(minNPvalue);
-
-        minutesNP.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                isMinutesNPfirstTime = false;
-                getValueMinutesNP = (String) (format("%s", minutesNP.getValue()));
-//                Log.d("MainActivity gia ta Mintes toy NumberPIcker: ", getValueMinutesNP);
-                SharedPreferences sharedPreferences = getSharedPreferences("MinutesPref", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                editor.putInt("minutesNPvalue", newVal);
-                editor.apply();
-            }
-        });
-
-        secNPvalue = isSecondsNPfirstTime ? defaultValueSecondsNP : Integer.parseInt(getValueSecondsNP);
-        secondsNP.setValue(secNPvalue);
-        secondsNP.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                isSecondsNPfirstTime = false;
-                getValueSecondsNP = (String) (format("%s", secondsNP.getValue()));
-//                Log.d("MainActivity gia ta seconds toy NumberPicker: ", getValueSecondsNP);
-                SharedPreferences sharedPreferences = getSharedPreferences("SecondsPref", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("secondsNPvalue", newVal);
-                editor.apply();
-            }
-        });
-
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setView(view);
@@ -218,6 +207,11 @@ public class MainActivity extends MyAppCompatActivity {
         doneBtn.findViewById(R.id.button_setTime_doneDialog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sharedPreferences_currentChecked_Radiobutton = getSharedPreferences("currentPrefRB", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences_currentChecked_Radiobutton.edit();
+                editor.putInt("currentCheckedPrefRB", currentCheckedRadiobutton);
+                editor.apply();
+
                 alertDialog.dismiss();
             }
         });
@@ -226,7 +220,6 @@ public class MainActivity extends MyAppCompatActivity {
         }
         alertDialog.show();
     }
-
 
     private void showNumberOfPlayersDialog() {
         ConstraintLayout setnofplayersConstraintLayout = findViewById(R.id.setnofplayersConstraintLayout);
@@ -307,30 +300,53 @@ public class MainActivity extends MyAppCompatActivity {
     }
 
     public void setUserPreferences() {
-//        SharedPreferences preferences1 = getSharedPreferences("MinutesPref", MODE_PRIVATE);
-//        defaultValueMinutesNP = preferences1.getInt("minutesNPvalue", 0);
-//        SharedPreferences preferences2 = getSharedPreferences("SecondsPref", MODE_PRIVATE);
-//        defaultValueSecondsNP = preferences2.getInt("secondsNPvalue", 0);
-//        SharedPreferences preferences3 = getSharedPreferences("NoOfPlayersPref", MODE_PRIVATE);
-//        defaultValueNoOfPlayersNP = preferences3.getInt("noOfPlayersNPvalue", 1);
-//        SharedPreferences preferences_withPause_checkbox = getSharedPreferences("withPauseChkBox", MODE_PRIVATE);
-//        defaultValueWithPauseCheckBox = preferences_withPause_checkbox.getBoolean("withPauseCB", true);
-        getUserPrefMinutesNP(this);
-        getUserPrefSecondsNP(this);
+
+        getUserPref1MinutesNP(this);
+        getUserPref1SecondsNP(this);
+        getUserPref2MinutesNP(this);
+        getUserPref2SecondsNP(this);
+        getUserPref3MinutesNP(this);
+        getUserPref3SecondsNP(this);
+        getUserPrefCurrentRadiobuttonChecked(this);
         getUserPrefNoOfPlayersNP(this);
         getUserPrefWithPauseCB(this);
         getUserPrefPlayer1Name(this);
         getUserPrefPlayer2Name(this);
     }
 
-    public int getUserPrefMinutesNP(Context context) {
-        SharedPreferences preferences1 = context.getSharedPreferences("MinutesPref", MODE_PRIVATE);
-        return defaultValueMinutesNP = preferences1.getInt("minutesNPvalue", 0);
+    public int getUserPref1MinutesNP(Context context) {
+        SharedPreferences minsPreferences1 = context.getSharedPreferences("MinutesPref1", MODE_PRIVATE);
+        return defaultValueMinutesNP = minsPreferences1.getInt("minutesNPvalue1", 0);
     }
 
-    public int getUserPrefSecondsNP(Context context) {
-        SharedPreferences preferences2 = context.getSharedPreferences("SecondsPref", MODE_PRIVATE);
-        return defaultValueSecondsNP = preferences2.getInt("secondsNPvalue", 0);
+    public int getUserPref1SecondsNP(Context context) {
+        SharedPreferences secsPreferences1 = context.getSharedPreferences("SecondsPref1", MODE_PRIVATE);
+        return defaultValueSecondsNP = secsPreferences1.getInt("secondsNPvalue1", 0);
+    }
+
+    public int getUserPref2MinutesNP(Context context) {
+        SharedPreferences minsPreferences2 = context.getSharedPreferences("MinutesPref2", MODE_PRIVATE);
+        return defaultValueMinutesNP = minsPreferences2.getInt("minutesNPvalue2", 0);
+    }
+
+    public int getUserPref2SecondsNP(Context context) {
+        SharedPreferences secsPreferences2 = context.getSharedPreferences("SecondsPref2", MODE_PRIVATE);
+        return defaultValueSecondsNP = secsPreferences2.getInt("secondsNPvalue2", 0);
+    }
+
+    public int getUserPref3MinutesNP(Context context) {
+        SharedPreferences minsPreferences3 = context.getSharedPreferences("MinutesPref3", MODE_PRIVATE);
+        return defaultValueMinutesNP = minsPreferences3.getInt("minutesNPvalue3", 0);
+    }
+
+    public int getUserPref3SecondsNP(Context context) {
+        SharedPreferences secsPreferences3 = context.getSharedPreferences("SecondsPref3", MODE_PRIVATE);
+        return defaultValueSecondsNP = secsPreferences3.getInt("secondsNPvalue3", 0);
+    }
+
+    public int getUserPrefCurrentRadiobuttonChecked(Context context){
+        SharedPreferences currentCheckedRadiobuttonPreferences = context.getSharedPreferences("currentPrefRB",MODE_PRIVATE);
+        return currentCheckedRadiobutton = currentCheckedRadiobuttonPreferences.getInt("currentCheckedPrefRB", 2131296651);
     }
 
     public int getUserPrefNoOfPlayersNP(Context context) {
@@ -340,7 +356,7 @@ public class MainActivity extends MyAppCompatActivity {
 
     public boolean getUserPrefWithPauseCB(Context context) {
         SharedPreferences preferences_withPause_checkbox = context.getSharedPreferences("withPauseChkBox", MODE_PRIVATE);
-        return defaultValueWithPauseCheckBox = preferences_withPause_checkbox.getBoolean("withPauseCB", true);
+        return getValueWithPauseCheckBox = preferences_withPause_checkbox.getBoolean("withPauseCB", true);
     }
 
     public String getUserPrefPlayer1Name(Context context) {
@@ -353,6 +369,42 @@ public class MainActivity extends MyAppCompatActivity {
         return defaultValuePlayer2Name = preferences_playerName2.getString("Player2NameValue", " ");
     }
 
+    public void settingMinutes(String name, String key) {
+//        minNPvalue = isMinutesNPfirstTime ? defaultValueMinutesNP : Integer.parseInt(getValueMinutesNP);
+        minNPvalue = defaultValueMinutesNP;
+        minutesNP.setValue(minNPvalue);
+        minutesNP.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                isMinutesNPfirstTime = false;
+                getValueMinutesNP = (String) (format("%s", minutesNP.getValue()));
+//                Log.d("MainActivity gia ta Mintes toy NumberPIcker: ", getValueMinutesNP);
+                SharedPreferences sharedPreferences = getSharedPreferences(name, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.putInt(key, newVal);
+                editor.apply();
+            }
+        });
+    }
+
+    public void settingSeconds(String name, String key) {
+//        secNPvalue = isSecondsNPfirstTime ? defaultValueSecondsNP : Integer.parseInt(getValueSecondsNP);
+        secNPvalue = defaultValueSecondsNP;
+        secondsNP.setValue(secNPvalue);
+        secondsNP.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                isSecondsNPfirstTime = false;
+                getValueSecondsNP = (String) (format("%s", secondsNP.getValue()));
+//                Log.d("MainActivity gia ta seconds toy NumberPicker: ", getValueSecondsNP);
+                SharedPreferences sharedPreferences = getSharedPreferences(name, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt(key, newVal);
+                editor.apply();
+            }
+        });
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

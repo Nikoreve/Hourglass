@@ -41,6 +41,7 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
     Notification notification;
     NotificationManagerCompat notificationManagerCompat;
     NotificationManager notificationManager;
+    private int minutes, seconds, checkedRadiobutton;
     private ProgressBar circular_progressBar;
     private int progressStatus = 0, upTime = 1, max, isCreatedFirstTime = 0;
     private long timeLeftInMillis;
@@ -86,18 +87,33 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         chronometer = (Chronometer) view.findViewById(R.id.chronometer);
         circular_progressBar = view.findViewById(R.id.progressBar_fopwp);
 
-//        if (String.valueOf(mainActivityObject.getUserPrefMinutesNP(getContext())).length() == 1)
-//            onePlayerWithPauseMinutesTV.setText("0" + String.valueOf(mainActivityObject.getUserPrefMinutesNP(getContext())));
+//        if (String.valueOf(mainActivityObject.getUserPref1MinutesNP(getContext())).length() == 1)
+//            onePlayerWithPauseMinutesTV.setText("0" + String.valueOf(mainActivityObject.getUserPref1MinutesNP(getContext())));
 //        else
-//            onePlayerWithPauseMinutesTV.setText("" + String.valueOf(mainActivityObject.getUserPrefMinutesNP(getContext())));
+//            onePlayerWithPauseMinutesTV.setText("" + String.valueOf(mainActivityObject.getUserPref1MinutesNP(getContext())));
 //
-//        if (String.valueOf(mainActivityObject.getUserPrefSecondsNP(getContext())).length() == 1)
-//            onePlayerWithPauseSecondsTV.setText("0" + mainActivityObject.getUserPrefSecondsNP(getContext()));
+//        if (String.valueOf(mainActivityObject.getUserPrefSecondsNP1(getContext())).length() == 1)
+//            onePlayerWithPauseSecondsTV.setText("0" + mainActivityObject.getUserPrefSecondsNP1(getContext()));
 //        else
-//            onePlayerWithPauseSecondsTV.setText("" + mainActivityObject.getUserPrefSecondsNP(getContext()));
+//            onePlayerWithPauseSecondsTV.setText("" + mainActivityObject.getUserPrefSecondsNP1(getContext()));
 
-        int minutes = mainActivityObject.getUserPrefMinutesNP(getContext());
-        int seconds = mainActivityObject.getUserPrefSecondsNP(getContext());
+        checkedRadiobutton = mainActivityObject.getUserPrefCurrentRadiobuttonChecked(getContext());
+        if (checkedRadiobutton == 2131296651) {
+            minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
+        } else if (checkedRadiobutton == 2131296652) {
+            minutes = mainActivityObject.getUserPref2MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref2SecondsNP(getContext());
+        } else if (checkedRadiobutton == 2131296653) {
+            minutes = mainActivityObject.getUserPref3MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref3SecondsNP(getContext());
+        } else {
+            // checkedRadiobutton == -1
+            System.out.print("The checkedRadiobutton probably is: -1");
+            minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
+        }
+
 //        int minutes = Integer.parseInt(onePlayerWithPauseMinutesTV.getText().toString());
 //        int seconds = Integer.parseInt(onePlayerWithPauseSecondsTV.getText().toString());
 
@@ -491,7 +507,7 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         pauseNotification();
     }
 
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
 //        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("timerPref", Context.MODE_PRIVATE);
@@ -513,7 +529,7 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("isCreatedFirst", isCreatedFirstTime);
 //        editor.putInt("max",max);
-        editor.putInt("progressStatus",progressStatus);
+        editor.putInt("progressStatus", progressStatus);
 //        editor.putLong("mtimeLeft", leftTimeInMillis);
 //        editor.putLong("elapsedTime3", elapsedTime3);
         editor.putLong("elapsedTime1", elapsedTime1);
@@ -537,7 +553,7 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         isCreatedFirstTime = sharedPreferences.getInt("isCreatedFirst", 0);
 //        max = sharedPreferences.getInt("max",max);
 //        elapsedTime3 = sharedPreferences.getLong("elapsedTime3", 0);
-        progressStatus = sharedPreferences.getInt("progressStatus",progressStatus);
+        progressStatus = sharedPreferences.getInt("progressStatus", progressStatus);
 
         elapsedTime1 = sharedPreferences.getLong("elapsedTime1", 0);
         elapsedTime2 = sharedPreferences.getLong("elapsedTime2", 0);
@@ -578,13 +594,13 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
 //                    Log.d(TAG, "leftTimeInMillis: " + leftTimeInMillis);
 //                    if (totalTimeInMillis != totalTimeInMillisArchieve) {
 
-                        totalTimeInMillis = elapsedTime2;
+                    totalTimeInMillis = elapsedTime2;
 //                        Log.d(TAG, "elapsedTime2 is: " + elapsedTime2);
-                        isPaused = false;
+                    isPaused = false;
 //                        Log.d(TAG, " chronometer.getBase() in onStart before: " + chronometer.getBase());
-                        chronometer.setBase(SystemClock.elapsedRealtime() + elapsedTime2);
+                    chronometer.setBase(SystemClock.elapsedRealtime() + elapsedTime2);
 //                        Log.d(TAG, " chronometer.getBase() in onStart after: " + chronometer.getBase());
-                        pauseIBonClick1PWP(getView());
+                    pauseIBonClick1PWP(getView());
 //                    }
                 }
 //        createNotification();

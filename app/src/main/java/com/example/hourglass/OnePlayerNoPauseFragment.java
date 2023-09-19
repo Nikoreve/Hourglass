@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.AnimatedImageDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -17,7 +16,6 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.os.SystemClock;
 import android.util.Log;
@@ -41,6 +39,7 @@ public class OnePlayerNoPauseFragment extends Fragment implements NotificationIm
     Notification notification;
     NotificationManagerCompat notificationManagerCompat;
     NotificationManager notificationManager;
+    private int minutes, seconds, checkedRadiobutton;
     private ProgressBar circular_progressBar;
     private int progressStatus = 0, upTime = 1, max, isCreatedFirstTime = 0;
 
@@ -74,9 +73,24 @@ public class OnePlayerNoPauseFragment extends Fragment implements NotificationIm
         chronometer = (Chronometer) view.findViewById(R.id.chronometer);
         circular_progressBar = view.findViewById(R.id.progressBar_fopnp);
 
-
-        int minutes = mainActivityObject.getUserPrefMinutesNP(getContext());
-        int seconds = mainActivityObject.getUserPrefSecondsNP(getContext());
+        checkedRadiobutton = mainActivityObject.getUserPrefCurrentRadiobuttonChecked(getContext());
+        if (checkedRadiobutton == 2131296651) {
+            minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
+        } else if (checkedRadiobutton == 2131296652) {
+            minutes = mainActivityObject.getUserPref2MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref2SecondsNP(getContext());
+        } else if (checkedRadiobutton == 2131296653) {
+            minutes = mainActivityObject.getUserPref3MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref3SecondsNP(getContext());
+        } else {
+            // checkedRadiobutton == -1
+            System.out.print("The checkedRadiobutton probably is: -1");
+            minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
+            seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
+        }
+//        int minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
+//        int seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
 
         max = minutes * 60 + seconds;
         circular_progressBar.setMax(max);

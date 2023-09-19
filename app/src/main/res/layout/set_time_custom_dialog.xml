@@ -7,26 +7,26 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@color/primary_fifth"
-    tools:context=".SetTimeActivity">
+    tools:context=".MainActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutDialog"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/setTimeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/setTimeTitle"
-            android:textStyle="bold"
-            android:textSize="21sp"
-            android:textColor="@color/textcolor_second"
             android:gravity="center"
+            android:text="@string/setTimeTitle"
+            android:textColor="@color/textcolor_second"
+            android:textSize="21sp"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="@id/layoutDialog"></TextView>
 
         <RelativeLayout
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="80dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,37 +54,78 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/textview_setTime_minutes"
                 android:gravity="center"
-                android:text="@string/secondsTxt"
-                ></TextView>
+                android:text="@string/secondsTxt"></TextView>
 
             <NumberPicker
                 android:id="@+id/numberPicker_setTime_minutespicker"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="140dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/secondary_sixth"></NumberPicker>
 
             <NumberPicker
                 android:id="@+id/numberPicker_setTime_secondspicker"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="140dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@id/numberPicker_setTime_minutespicker"
                 android:background="@color/secondary_sixth"></NumberPicker>
 
+            <RadioGroup
+                android:id="@+id/radioGroup_setTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@id/numberPicker_setTime_secondspicker">
+
+                <RadioButton
+                    android:id="@+id/radiobutton_setTime_customSet1"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toEndOf="@+id/numberPicker_setTime_secondspicker"
+                    android:checked="true"
+                    android:text="1"
+                    android:textColor="@color/black"></RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radiobutton_setTime_customSet2"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/button_setTime_customSet1"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/numberPicker_setTime_secondspicker"
+                    android:text="2"
+                    android:textColor="@color/black"></RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radiobutton_setTime_customSet3"
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/radiobutton_setTime_customSet2"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/numberPicker_setTime_secondspicker"
+                    android:text="3"
+                    android:textColor="@color/black"></RadioButton>
+            </RadioGroup>
         </RelativeLayout>
 
         <TextView
             android:id="@+id/textView_setTime_withPause"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="-60dp"
             android:gravity="center_horizontal"
             android:text="@string/withPauseText"
-            android:textSize="17sp"
             android:textColor="@color/textcolor_second"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutRelative"></TextView>
 
@@ -92,22 +133,23 @@
             android:id="@+id/checkBox_setTime_withpause"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintLeft_toRightOf="@id/textView_setTime_withPause"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.114"
+            app:layout_constraintStart_toEndOf="@+id/textView_setTime_withPause"
             app:layout_constraintTop_toBottomOf="@id/layoutRelative"></androidx.appcompat.widget.AppCompatCheckBox>
 
         <Button
             android:id="@+id/button_setTime_doneDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="102dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/secondary_third"
             android:text="@string/doneButton"
             android:textColor="@color/white"
-            android:backgroundTint="@color/secondary_third"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox_setTime_withpause" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_setTime_withPause" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
