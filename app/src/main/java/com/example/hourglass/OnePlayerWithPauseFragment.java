@@ -98,13 +98,13 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
 //            onePlayerWithPauseSecondsTV.setText("" + mainActivityObject.getUserPrefSecondsNP1(getContext()));
 
         checkedRadiobutton = mainActivityObject.getUserPrefCurrentRadiobuttonChecked(getContext());
-        if (checkedRadiobutton == 2131296651) {
+        if (checkedRadiobutton == 0) {
             minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
             seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
-        } else if (checkedRadiobutton == 2131296652) {
+        } else if (checkedRadiobutton == 1) {
             minutes = mainActivityObject.getUserPref2MinutesNP(getContext());
             seconds = mainActivityObject.getUserPref2SecondsNP(getContext());
-        } else if (checkedRadiobutton == 2131296653) {
+        } else if (checkedRadiobutton == 2) {
             minutes = mainActivityObject.getUserPref3MinutesNP(getContext());
             seconds = mainActivityObject.getUserPref3SecondsNP(getContext());
         } else {
@@ -267,9 +267,12 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         chronometer.setCountDown(true);
         chronometer.start();
 
-        oneplayerWithPausePlayIB.setVisibility(View.GONE);
-        oneplayerWithPausePauseIB.setVisibility(View.VISIBLE);
-        oneplayerWithPauseRestartIB.setVisibility(View.VISIBLE);
+        oneplayerWithPausePlayIB.setImageAlpha(0);
+        oneplayerWithPausePauseIB.setImageAlpha(1);
+        oneplayerWithPauseRestartIB.setImageAlpha(1);
+//        oneplayerWithPausePlayIB.setVisibility(View.GONE);
+//        oneplayerWithPausePauseIB.setVisibility(View.VISIBLE);
+//        oneplayerWithPauseRestartIB.setVisibility(View.VISIBLE);
     }
 
     public void pauseIBonClick1PWP(View view) {
@@ -374,9 +377,12 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         notificationManagerCompat.cancel(1);
 
         oneplayerWithPausePauseIB.setClickable(true);
-        oneplayerWithPausePlayIB.setVisibility(View.VISIBLE);
-        oneplayerWithPausePauseIB.setVisibility(View.GONE);
-        oneplayerWithPauseRestartIB.setVisibility(View.GONE);
+        oneplayerWithPausePlayIB.setImageAlpha(1);
+        oneplayerWithPausePauseIB.setImageAlpha(0);
+        oneplayerWithPauseRestartIB.setImageAlpha(0);
+//        oneplayerWithPausePlayIB.setVisibility(View.VISIBLE);
+//        oneplayerWithPausePauseIB.setVisibility(View.GONE);
+//        oneplayerWithPauseRestartIB.setVisibility(View.GONE);
     }
 
 

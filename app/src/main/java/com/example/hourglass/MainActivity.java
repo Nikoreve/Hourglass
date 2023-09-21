@@ -124,25 +124,28 @@ public class MainActivity extends MyAppCompatActivity {
         secondsNP.setMinValue(00);
         secondsNP.setMaxValue(59);
 
-        System.out.println("currentCheckedRadiobutton is: "+currentCheckedRadiobutton);
-        radioGroup.check(currentCheckedRadiobutton);
-        if (currentCheckedRadiobutton == 2131296651) {
+        System.out.println("currentCheckedRadiobutton is: " + currentCheckedRadiobutton);
+        if (currentCheckedRadiobutton == 0) {
+            radioGroup.check(buttonPref1.getId());
             getUserPref1MinutesNP(getApplicationContext());
             getUserPref1SecondsNP(getApplicationContext());
             settingMinutes("MinutesPref1", "minutesNPvalue1");
             settingSeconds("SecondsPref1", "secondsNPvalue1");
-        } else if (currentCheckedRadiobutton == 2131296652) {
+        } else if (currentCheckedRadiobutton == 1) {
+            radioGroup.check(buttonPref2.getId());
             getUserPref2MinutesNP(getApplicationContext());
             getUserPref2SecondsNP(getApplicationContext());
             settingMinutes("MinutesPref2", "minutesNPvalue2");
             settingSeconds("SecondsPref2", "secondsNPvalue2");
-        } else if (currentCheckedRadiobutton == 2131296653) {
+        } else if (currentCheckedRadiobutton == 2) {
+            radioGroup.check(buttonPref3.getId());
             getUserPref3MinutesNP(getApplicationContext());
             getUserPref3SecondsNP(getApplicationContext());
             settingMinutes("MinutesPref3", "minutesNPvalue3");
             settingSeconds("SecondsPref3", "secondsNPvalue3");
         } else {
             // currentCheckedRadiobutton == -1
+            radioGroup.check(buttonPref1.getId());
             System.out.println("The checkedRadiobuttonPrefID probably is: -1");
             getUserPref1MinutesNP(getApplicationContext());
             getUserPref1SecondsNP(getApplicationContext());
@@ -152,12 +155,12 @@ public class MainActivity extends MyAppCompatActivity {
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup rdgrp0, int id) {
-                currentCheckedRadiobutton = id;
 //                boolean checkedRadiobutton = ((RadioButton) view).isChecked();
                 switch (rdgrp0.getCheckedRadioButtonId()) {
                     case R.id.radiobutton_setTime_customSet1:
 //                    case 2131296651:
-                        System.out.println("radioGroup.getCheckedRadioButtonId()"+ radioGroup.getCheckedRadioButtonId()+" for 0");
+                        currentCheckedRadiobutton = 0;
+                        System.out.println("radioGroup.getCheckedRadioButtonId()" + radioGroup.getCheckedRadioButtonId() + " for 0");
                         getUserPref1SecondsNP(getApplicationContext());
                         getUserPref1MinutesNP(getApplicationContext());
                         settingMinutes("MinutesPref1", "minutesNPvalue1");
@@ -165,7 +168,8 @@ public class MainActivity extends MyAppCompatActivity {
                         break;
                     case R.id.radiobutton_setTime_customSet2:
 //                    case 2131296652:
-                        System.out.println("radioGroup.getCheckedRadioButtonId()"+ radioGroup.getCheckedRadioButtonId() +" for 1");
+                        currentCheckedRadiobutton = 1;
+                        System.out.println("radioGroup.getCheckedRadioButtonId()" + radioGroup.getCheckedRadioButtonId() + " for 1");
                         getUserPref2SecondsNP(getApplicationContext());
                         getUserPref2MinutesNP(getApplicationContext());
                         settingMinutes("MinutesPref2", "minutesNPvalue2");
@@ -174,7 +178,8 @@ public class MainActivity extends MyAppCompatActivity {
 
                     case R.id.radiobutton_setTime_customSet3:
 //                    case 2131296653:
-                        System.out.println("radioGroup.getCheckedRadioButtonId()"+ radioGroup.getCheckedRadioButtonId()+" for 2");
+                        currentCheckedRadiobutton = 2;
+                        System.out.println("radioGroup.getCheckedRadioButtonId()" + radioGroup.getCheckedRadioButtonId() + " for 2");
                         getUserPref3SecondsNP(getApplicationContext());
                         getUserPref3MinutesNP(getApplicationContext());
                         settingMinutes("MinutesPref3", "minutesNPvalue3");
@@ -344,9 +349,9 @@ public class MainActivity extends MyAppCompatActivity {
         return defaultValueSecondsNP = secsPreferences3.getInt("secondsNPvalue3", 0);
     }
 
-    public int getUserPrefCurrentRadiobuttonChecked(Context context){
-        SharedPreferences currentCheckedRadiobuttonPreferences = context.getSharedPreferences("currentPrefRB",MODE_PRIVATE);
-        return currentCheckedRadiobutton = currentCheckedRadiobuttonPreferences.getInt("currentCheckedPrefRB", 2131296651);
+    public int getUserPrefCurrentRadiobuttonChecked(Context context) {
+        SharedPreferences currentCheckedRadiobuttonPreferences = context.getSharedPreferences("currentPrefRB", MODE_PRIVATE);
+        return currentCheckedRadiobutton = currentCheckedRadiobuttonPreferences.getInt("currentCheckedPrefRB", 0);
     }
 
     public int getUserPrefNoOfPlayersNP(Context context) {

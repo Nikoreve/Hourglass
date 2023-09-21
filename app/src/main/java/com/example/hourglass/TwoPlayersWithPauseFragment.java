@@ -99,13 +99,13 @@ public class TwoPlayersWithPauseFragment extends Fragment {
             player2NameTxt.setText(player2Name);
 
         checkedRadiobutton = mainActivityObject.getUserPrefCurrentRadiobuttonChecked(getContext());
-        if (checkedRadiobutton == 2131296651) {
+        if (checkedRadiobutton == 0) {
             minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
             seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
-        } else if (checkedRadiobutton == 2131296652) {
+        } else if (checkedRadiobutton == 1) {
             minutes = mainActivityObject.getUserPref2MinutesNP(getContext());
             seconds = mainActivityObject.getUserPref2SecondsNP(getContext());
-        } else if (checkedRadiobutton == 2131296653) {
+        } else if (checkedRadiobutton == 2) {
             minutes = mainActivityObject.getUserPref3MinutesNP(getContext());
             seconds = mainActivityObject.getUserPref3SecondsNP(getContext());
         } else {
