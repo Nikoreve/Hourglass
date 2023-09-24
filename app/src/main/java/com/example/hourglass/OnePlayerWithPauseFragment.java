@@ -71,7 +71,8 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_one_player_with_pause, container, false);
+//        View view = inflater.inflate(R.layout.fragment_one_player_with_pause, container, false);
+        View view = inflater.inflate(R.layout.motion_layout, container, false);
 
         MainActivity mainActivityObject = new MainActivity();
 
@@ -267,12 +268,9 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         chronometer.setCountDown(true);
         chronometer.start();
 
-        oneplayerWithPausePlayIB.setImageAlpha(0);
-        oneplayerWithPausePauseIB.setImageAlpha(1);
-        oneplayerWithPauseRestartIB.setImageAlpha(1);
-//        oneplayerWithPausePlayIB.setVisibility(View.GONE);
-//        oneplayerWithPausePauseIB.setVisibility(View.VISIBLE);
-//        oneplayerWithPauseRestartIB.setVisibility(View.VISIBLE);
+        oneplayerWithPausePlayIB.setVisibility(View.GONE);
+        oneplayerWithPausePauseIB.setVisibility(View.VISIBLE);
+        oneplayerWithPauseRestartIB.setVisibility(View.VISIBLE);
     }
 
     public void pauseIBonClick1PWP(View view) {
@@ -377,12 +375,12 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         notificationManagerCompat.cancel(1);
 
         oneplayerWithPausePauseIB.setClickable(true);
-        oneplayerWithPausePlayIB.setImageAlpha(1);
-        oneplayerWithPausePauseIB.setImageAlpha(0);
-        oneplayerWithPauseRestartIB.setImageAlpha(0);
-//        oneplayerWithPausePlayIB.setVisibility(View.VISIBLE);
-//        oneplayerWithPausePauseIB.setVisibility(View.GONE);
-//        oneplayerWithPauseRestartIB.setVisibility(View.GONE);
+//        oneplayerWithPausePlayIB.setImageAlpha(1);
+//        oneplayerWithPausePauseIB.setImageAlpha(0);
+//        oneplayerWithPauseRestartIB.setImageAlpha(0);
+        oneplayerWithPausePlayIB.setVisibility(View.VISIBLE);
+        oneplayerWithPausePauseIB.setVisibility(View.GONE);
+        oneplayerWithPauseRestartIB.setVisibility(View.GONE);
     }
 
 

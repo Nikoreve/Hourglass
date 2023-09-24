@@ -74,5 +74,8 @@
     <string name="player2NameTxt">Παίχτης 2</string>
     <string name="player1TimeFinished">Έληξε ο χρόνος του</string>
     <string name="player2TimeFinished">Έληξε ο χρόνος του</string>
+    <string name="radioButton1">1</string>
+    <string name="radioButton2">2</string>
+    <string name="radioButton3">3</string>
 
 </resources>

@@ -73,5 +73,8 @@
     <string name="player2NameTxt">Player 2</string>
     <string name="player1TimeFinished">Time finished for</string>
     <string name="player2TimeFinished">Time finished for</string>
+    <string name="radioButton1">1</string>
+    <string name="radioButton2">2</string>
+    <string name="radioButton3">3</string>
 
 </resources>

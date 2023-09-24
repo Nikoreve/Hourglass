@@ -154,11 +154,11 @@ public class MainActivity extends MyAppCompatActivity {
         }
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @SuppressLint("NonConstantResourceId")
             public void onCheckedChanged(RadioGroup rdgrp0, int id) {
 //                boolean checkedRadiobutton = ((RadioButton) view).isChecked();
                 switch (rdgrp0.getCheckedRadioButtonId()) {
                     case R.id.radiobutton_setTime_customSet1:
-//                    case 2131296651:
                         currentCheckedRadiobutton = 0;
                         System.out.println("radioGroup.getCheckedRadioButtonId()" + radioGroup.getCheckedRadioButtonId() + " for 0");
                         getUserPref1SecondsNP(getApplicationContext());
@@ -167,7 +167,6 @@ public class MainActivity extends MyAppCompatActivity {
                         settingSeconds("SecondsPref1", "secondsNPvalue1");
                         break;
                     case R.id.radiobutton_setTime_customSet2:
-//                    case 2131296652:
                         currentCheckedRadiobutton = 1;
                         System.out.println("radioGroup.getCheckedRadioButtonId()" + radioGroup.getCheckedRadioButtonId() + " for 1");
                         getUserPref2SecondsNP(getApplicationContext());
@@ -177,7 +176,6 @@ public class MainActivity extends MyAppCompatActivity {
                         break;
 
                     case R.id.radiobutton_setTime_customSet3:
-//                    case 2131296653:
                         currentCheckedRadiobutton = 2;
                         System.out.println("radioGroup.getCheckedRadioButtonId()" + radioGroup.getCheckedRadioButtonId() + " for 2");
                         getUserPref3SecondsNP(getApplicationContext());
