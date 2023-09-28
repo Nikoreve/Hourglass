@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,7 +47,7 @@ public class SettingsActivity extends MyAppCompatActivity implements View.OnClic
         sfxtxt = findViewById(R.id.sfx_settings);
         musictxt = findViewById(R.id.music_settings);
         abouttxt = findViewById(R.id.about_settings);
-        backButton = findViewById(R.id.back_settings);
+//        backButton = findViewById(R.id.back_settings);
 
 //        manualtxt.setOnClickListener(this::toDoManual);
 
@@ -57,89 +58,9 @@ public class SettingsActivity extends MyAppCompatActivity implements View.OnClic
         itemList.add(new LanguageItem(R.string.textGreekLanguage, R.drawable.greece));
 
         adapter = new CustomAdapter(this, R.layout.language_item, itemList);
-
-//        languagetxt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                builder = new AlertDialog.Builder(SettingsActivity.this);
-//                builder.setTitle(R.string.languageDialog)
-//                        .setAdapter(adapter, new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                LanguageItem selectedItem = itemList.get(which);
-//
-//                                String selectedLanguage;
-//                                Intent resultIntent = new Intent();
-//                                switch (which) {
-//                                    case 0:
-//                                        languageManager.updateRecource("en");
-//                                        recreate();
-//                                        selectedLanguage = "en"; // Example: "fr" for French
-//                                        resultIntent = new Intent();
-//                                        resultIntent.putExtra("selected_language", selectedLanguage);
-//                                        setResult(RESULT_OK, resultIntent);
-//                                        Toast.makeText(SettingsActivity.this, R.string.english_language_selected, Toast.LENGTH_SHORT).show();
-//                                        dialog.dismiss();
-//                                        break;
-//                                    case 1:
-//                                        languageManager.updateRecource("el");
-//                                        recreate();
-//                                        selectedLanguage = "el"; // Example: "fr" for French
-//                                        resultIntent.putExtra("selected_language", selectedLanguage);
-//                                        setResult(RESULT_OK, resultIntent);
-//                                        Toast.makeText(SettingsActivity.this, R.string.greek_language_selected, Toast.LENGTH_SHORT).show();
-//                                        dialog.dismiss();
-//                                        break;
-//                                    default:
-////                                        dialog.dismiss();
-//
-//                                }
-//                            }
-////                        .setItems(R.array.language_dialog_items, new DialogInterface.OnClickListener() {
-////                            @Override
-////                            public void onClick(DialogInterface dialog, int which) {
-////                                String strcode = "";
-////                                String selectedLanguage;
-////                                Intent resultIntent = new Intent();
-////                                switch (which) {
-////                                    case 0:
-////                                        //sharedPreferences
-//////                                        String code = "en";
-//////                                        Locale locale= new Locale(code);
-//////                                        Resources resources = context.getResources();
-//////                                        Configuration configuration = resources.getConfiguration();
-//////                                        configuration.setLocale(locale);
-//////                                        if(code == strcode)
-////                                        languageManager.updateRecource("en");
-////                                        recreate();
-////                                        selectedLanguage = "en"; // Example: "fr" for French
-////                                        resultIntent = new Intent();
-////                                        resultIntent.putExtra("selected_language", selectedLanguage);
-////                                        setResult(RESULT_OK, resultIntent);
-////                                        Toast.makeText(SettingsActivity.this, R.string.english_language_selected, Toast.LENGTH_SHORT).show();
-////                                        dialog.dismiss();
-////                                        break;
-////                                    case 1:
-////                                        //sharedPreferences
-////                                        languageManager.updateRecource("el");
-////                                        recreate();
-////                                        selectedLanguage = "el"; // Example: "fr" for French
-////                                        resultIntent.putExtra("selected_language", selectedLanguage);
-////                                        setResult(RESULT_OK, resultIntent);
-////                                        Toast.makeText(SettingsActivity.this, R.string.greek_language_selected, Toast.LENGTH_SHORT).show();
-////                                        dialog.dismiss();
-////                                        break;
-////                                    default:
-////                                        dialog.dismiss();
-////                                }
-////                            }
-//                        });
-//                AlertDialog alert = builder.create();
-//                alert.show();
-//            }
-//        });
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -161,9 +82,9 @@ public class SettingsActivity extends MyAppCompatActivity implements View.OnClic
             case R.id.about_settings:
                 showAboutDialog(builderAbout);
                 break;
-            case R.id.back_settings:
-                backButtonClicked();
-                break;
+//            case R.id.back_settings:
+//                backButtonClicked();
+//                break;
         }
     }
 
@@ -173,27 +94,28 @@ public class SettingsActivity extends MyAppCompatActivity implements View.OnClic
                 .setAdapter(adapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        LanguageItem selectedItem = itemList.get(which);
+//                        LanguageItem selectedItem = itemList.get(which);
 
-                        String selectedLanguage;
-                        Intent resultIntent = new Intent();
+//                        String selectedLanguage;
+//                        Intent resultIntent = new Intent();
                         switch (which) {
                             case 0:
                                 languageManager.updateRecource("en");
                                 recreate();
-                                selectedLanguage = "en"; // Example: "fr" for French
-                                resultIntent = new Intent();
-                                resultIntent.putExtra("selected_language", selectedLanguage);
-                                setResult(RESULT_OK, resultIntent);
+//                                selectedLanguage = "en";
+//                                resultIntent.putExtra("selected_language", selectedLanguage);
+//                                setResult(RESULT_OK, resultIntent);
+//                                finish();
                                 Toast.makeText(SettingsActivity.this, R.string.english_language_selected, Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                                 break;
                             case 1:
                                 languageManager.updateRecource("el");
                                 recreate();
-                                selectedLanguage = "el"; // Example: "fr" for French
-                                resultIntent.putExtra("selected_language", selectedLanguage);
-                                setResult(RESULT_OK, resultIntent);
+//                                selectedLanguage = "el";
+//                                resultIntent.putExtra("selected_language", selectedLanguage);
+//                                setResult(RESULT_OK, resultIntent);
+//                                finish();
                                 Toast.makeText(SettingsActivity.this, R.string.greek_language_selected, Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                                 break;
@@ -207,9 +129,9 @@ public class SettingsActivity extends MyAppCompatActivity implements View.OnClic
         alert.show();
     }
 
-    public void backButtonClicked() {
-        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-    }
+//    public void backButtonClicked() {
+//        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+//    }
 
     public void toDoManual() {
         startActivity(new Intent(SettingsActivity.this, ManualActivity.class));
@@ -239,7 +161,8 @@ public class SettingsActivity extends MyAppCompatActivity implements View.OnClic
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+//                this.finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

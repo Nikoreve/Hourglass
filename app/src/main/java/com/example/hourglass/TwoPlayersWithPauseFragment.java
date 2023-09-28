@@ -77,7 +77,7 @@ public class TwoPlayersWithPauseFragment extends Fragment {
 
         playIB2.setOnClickListener(this::playIB2onClick);
         restartIB2.setOnClickListener(this::restartIB12onClick); // it calls the method for the restartIB1 because it does the same work
-//        pauseIB2.setOnClickListener(this::pauseIB2onClick);
+        pauseIB2.setOnClickListener(this::pauseIB2onClick);
 
         chronometer1 = view.findViewById(R.id.chronometer1);
         circular_progressBar1 = view.findViewById(R.id.progressBar_ftpwp1);
@@ -114,8 +114,6 @@ public class TwoPlayersWithPauseFragment extends Fragment {
             minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
             seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
         }
-//        int minutes = mainActivityObject.getUserPref1MinutesNP(getContext());
-//        int seconds = mainActivityObject.getUserPref1SecondsNP(getContext());
 
         max = minutes * 60 + seconds;
 //        System.out.print("max value: "+max);
@@ -156,9 +154,7 @@ public class TwoPlayersWithPauseFragment extends Fragment {
                         showProgress();
 //                        circular_progressBar1 = showProgress(progressStatus1, circular_progressBar1);
                 }
-                if (elapsedTime1_chr1 >= stopTimeInMillis) {
-
-                } else {
+                if (elapsedTime1_chr1 < stopTimeInMillis){
 
                     chronometer1.stop();
                     isChr1Running = false;
@@ -167,7 +163,6 @@ public class TwoPlayersWithPauseFragment extends Fragment {
                     playIB1.setEnabled(false);
                     pauseIB2.setEnabled(false);
                     playIB2.setEnabled(false);
-
                 }
             }
         });
@@ -192,8 +187,8 @@ public class TwoPlayersWithPauseFragment extends Fragment {
                         showProgress();
                     }
                 }
-                if (elapsedTime1_chr2 >= stopTimeInMillis) {
-                } else {
+                if (elapsedTime1_chr2 < stopTimeInMillis) {
+
                     chronometer2.stop();
                     isChr2Running = false;
                     Toast.makeText(getActivity(), getString(R.string.player2TimeFinished) + " " + player2NameTxt.getText().toString(), Toast.LENGTH_SHORT).show();
@@ -214,7 +209,6 @@ public class TwoPlayersWithPauseFragment extends Fragment {
         restartIB1.setClickable(true);
         restartIB2.setClickable(true);
 
-
         if (isChr2Inaugurate) {
             chronometer2.stop();
         }
@@ -227,7 +221,6 @@ public class TwoPlayersWithPauseFragment extends Fragment {
         if (valueTime == 0) {
             valueTime = 1;
             isChr1Running = true;
-//                if (playIB1.getDrawable() == getResources().getDrawable(R.drawable.round_play_arrow_65, getActivity().getTheme())) {
             playIB1.setImageDrawable(getResources().getDrawable(R.drawable.avd_anim, getActivity().getTheme()));
             Drawable drawable = playIB1.getDrawable();
 
@@ -256,43 +249,6 @@ public class TwoPlayersWithPauseFragment extends Fragment {
         if (!changeTurn) {
             changeTurn = true;
             onChronometerTick1(view);
-//            chronometer1.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-//                @Override
-//                public void onChronometerTick(Chronometer chronometer) {
-//                    Log.d(TAG,"CHR1 \t isChr1running: "+isChr1Running+"\nisChr2running: "+isChr2Running);
-//                    lastElapsedTime1_chr1 = elapsedTime1_chr1;
-//                    elapsedTime1_chr1 = chronometer.getBase() - SystemClock.elapsedRealtime();
-//                    if (lastElapsedTime1_chr1 - elapsedTime1_chr1 > 999)
-//                        showProgress();
-////                circular_progressBar1 = showProgress(progressStatus1, circular_progressBar1);
-//                    else if (lastElapsedTime1_chr1 - elapsedTime1_chr1 == totalTimeInMillis || (lastElapsedTime1_chr1 - elapsedTime1_chr1 > 0 && lastElapsedTime1_chr1 - elapsedTime1_chr1 < 65)) {
-//                        upTime_Chr1++;
-//                        if (upTime_Chr1 == 1 || upTime_Chr1 == 2)
-//                            showProgress();
-////                        circular_progressBar1 = showProgress(progressStatus1, circular_progressBar1);
-//                    }
-//                    if (elapsedTime1_chr1 >= stopTimeInMillis) {
-//
-//                    } else {
-//
-//                        chronometer1.stop();
-//                        isChr1Running = false;
-//                        // player1NameTxt take it by userPrefName
-//                        String pl = "player1NameTxt";
-//                        Toast.makeText(getActivity(), getString(R.string.player1TimeFinished) + " " + pl, Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                }
-//            });
-//            chronometer1.setBase(SystemClock.elapsedRealtime() + totalTimeInMillis);
-//            chronometer1.setCountDown(true);
-//            chronometer1.start();
-
-//            Log.d("2pwpf", "" + playIB1.getDrawable());
-//            if(playIB1.getDrawable() == getResources().getDrawable(R.drawable.avd_anim,getActivity().getTheme()))
-//                playIB1.setImageDrawable(getResources().getDrawable(R.drawable.next_arrow_65,getActivity().getTheme()));
-//            Log.d("2pwpf2", "" + playIB1.getDrawable());
-
 
         } else {
             elapsedTime2_chr1 = chronometer1.getBase() - SystemClock.elapsedRealtime();
@@ -402,6 +358,7 @@ public class TwoPlayersWithPauseFragment extends Fragment {
 
             if (drawable instanceof AnimatedVectorDrawable) {
                 avd = (AnimatedVectorDrawable) drawable;
+                avd.isStateful();
                 avd.start();
 
             } else if (drawable instanceof AnimatedVectorDrawableCompat) {
@@ -409,10 +366,10 @@ public class TwoPlayersWithPauseFragment extends Fragment {
                 avdc.start();
             }
 
-
-            Log.d("2pwpf", "" + playIB2.getDrawable());
+//            Log.d("2pwpf", "" + playIB2.getDrawable());
 
             pauseIB2.setVisibility(View.VISIBLE);
+            pauseIB2.setEnabled(true);
             restartIB2.setVisibility(View.VISIBLE);
             pauseIB1.setVisibility(View.VISIBLE);
             pauseIB1.setEnabled(false);
@@ -425,32 +382,6 @@ public class TwoPlayersWithPauseFragment extends Fragment {
             changeTurn = true;
             onChronometerTick2(view);
 
-//            chronometer2.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-//                @Override
-//                public void onChronometerTick(Chronometer chronometer) {
-//                    Log.d(TAG,"CHR2 \t isChr1running: "+isChr1Running+"\nisChr2running: "+isChr2Running);
-//                    lastElapsedTime1_chr2 = elapsedTime1_chr2;
-//                    elapsedTime1_chr2 = chronometer.getBase() - SystemClock.elapsedRealtime();
-//                    if (lastElapsedTime1_chr2 - elapsedTime1_chr2 > 999) {
-//                        showProgress();
-//                    } else if (lastElapsedTime1_chr2 - elapsedTime1_chr2 == totalTimeInMillis || (lastElapsedTime1_chr2 - elapsedTime1_chr2 > 0 && lastElapsedTime1_chr2 - elapsedTime1_chr2 < 65)) {
-//                        upTime_Chr2++;
-//                        if (upTime_Chr2 == 1 || upTime_Chr2 == 2) {
-//                            showProgress();
-//                        }
-//                    }
-//                    if (elapsedTime1_chr2 >= stopTimeInMillis) {
-//                    } else {
-//                        chronometer2.stop();
-//                        isChr2Running = false;
-//                        String pl = "player2NameTxt";
-//                        Toast.makeText(getActivity(), getString(R.string.player1TimeFinished) + " " + pl, Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//            chronometer2.setBase(SystemClock.elapsedRealtime() + totalTimeInMillis);
-//            chronometer2.setCountDown(true);
-//            chronometer2.start();
         } else {
             elapsedTime2_chr2 = chronometer2.getBase() - SystemClock.elapsedRealtime();
             chronometer2.stop();
@@ -467,6 +398,27 @@ public class TwoPlayersWithPauseFragment extends Fragment {
                 chronometer1.setBase(SystemClock.elapsedRealtime() + elapsedTime2_chr1);
                 chronometer1.start();
             }
+        }
+    }
+
+    public void pauseIB2onClick(View view) {
+        if (!isPaused_chr2) {
+            isPaused_chr2 = true;
+            isChr2Running = false;
+            elapsedTime2_chr2 = chronometer2.getBase() - SystemClock.elapsedRealtime();
+            chronometer2.stop();
+            pauseIB2.setImageResource(R.drawable.round_play_arrow_65);
+            playIB2.setEnabled(false);
+//            playIB2.setEnabled(false);
+//            pauseIB2.setEnabled(false);
+
+        } else {
+            isPaused_chr2 = false;
+            isChr2Running = true;
+            chronometer2.setBase(SystemClock.elapsedRealtime() + elapsedTime2_chr2);
+            chronometer2.start();
+            playIB2.setEnabled(true);
+            pauseIB2.setImageResource(R.drawable.round_pause_65);
         }
     }
 

@@ -2,9 +2,6 @@ package com.example.hourglass;
 
 import static java.lang.String.format;
 
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -21,6 +18,9 @@ import android.widget.CompoundButton;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -408,17 +408,17 @@ public class MainActivity extends MyAppCompatActivity {
             }
         });
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_LANGUAGE && resultCode == RESULT_OK) {
-            // Retrieve the selected language from the result
-            String selectedLanguage = data.getStringExtra("selected_language");
-
-            // Apply the selected language to the app's configuration
-            LanguageManager languageManager = new LanguageManager(this);
-            languageManager.updateRecource(selectedLanguage);
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == REQUEST_LANGUAGE && resultCode == RESULT_OK) {
+//            // Retrieve the selected language from the result
+//            assert data != null;
+//            String selectedLanguage = data.getStringExtra("selected_language");
+//
+//            // Apply the selected language to the app's configuration
+//            LanguageManager languageManager = new LanguageManager(this);
+//            languageManager.updateRecource(selectedLanguage);
+//        }
+//    }
 }
