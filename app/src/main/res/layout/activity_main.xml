@@ -7,6 +7,21 @@
     android:background="@color/secondary_sixth"
     tools:context=".MainActivity">
 
+    <View
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/background_ellipse_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="130dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/background_ellipse_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/titleImageView"
         android:layout_width="wrap_content"
@@ -16,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hourglass_title"></ImageView>
+        app:srcCompat="@drawable/hourglass_title" />
 
 
     <ImageView
@@ -28,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleImageView"
-        app:srcCompat="@drawable/hourglass_icon"></ImageView>
+        app:srcCompat="@drawable/hourglass_icon" />
 
 
     <Button
@@ -43,7 +58,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iconImageView"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/iconImageView" />
 
 
     <Button
@@ -58,7 +73,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_button"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/start_button" />
 
     <Button
         android:id="@+id/players_button"
@@ -72,7 +87,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setTime_button"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/setTime_button" />
 
     <Button
         android:id="@+id/settings_button"
@@ -99,6 +114,22 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_button"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/settings_button" />
+
+
+    <View
+        android:layout_width="150dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/background_ellipse_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/background_ellipse_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

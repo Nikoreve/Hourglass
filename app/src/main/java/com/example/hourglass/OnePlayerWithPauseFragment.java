@@ -72,7 +72,7 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //        View view = inflater.inflate(R.layout.fragment_one_player_with_pause, container, false);
-        View view = inflater.inflate(R.layout.motion_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_one_player_with_pause, container, false);
 
         MainActivity mainActivityObject = new MainActivity();
 
