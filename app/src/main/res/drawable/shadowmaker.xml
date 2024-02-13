@@ -3,7 +3,7 @@
         <shape android:shape="oval" >
             <gradient
                 android:startColor="@color/black"
-                android:endColor="@color/secondary_sixth"
+                android:endColor="@color/sand_100"
                 android:type="radial"
                 android:gradientRadius="55%p"
                 android:angle="180"/>
@@ -18,7 +18,7 @@
         android:right="2.5dp"
         android:top="2.5dp">
         <shape android:shape="oval" >
-            <solid android:color="@color/secondary_second" />
+            <solid android:color="?attr/colorSecondary" />
         </shape>
     </item>
 

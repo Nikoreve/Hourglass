@@ -10,7 +10,7 @@
                     <group android:name="group_1">
                         <path
                             android:name="path"
-                            android:fillColor="@color/secondary_second"
+                            android:fillColor="?attr/colorSecondary"
                             android:pathData="M 21.333 18.187 L 21.333 45.813 C 21.333 47.92 23.653 49.2 25.44 48.053 L 47.147 34.24 C 48.8 33.2 48.8 30.8 47.147 29.733 L 25.44 15.947 C 23.653 14.8 21.333 16.08 21.333 18.187 Z" />
                     </group>
                 </vector>

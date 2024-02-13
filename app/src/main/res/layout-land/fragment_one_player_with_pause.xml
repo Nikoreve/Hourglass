@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondary_sixth"
+    android:background="?android:attr/colorBackground"
     tools:context=".OnePlayerWithPauseFragment">
 
     <FrameLayout
         android:id="@+id/relativeLayout_1playerWithPause"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:background="@color/secondary_sixth"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +44,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textSize="24sp"
-            android:textStyle="bold"></Chronometer>
+            android:textStyle="bold" />
 
 
         <!--        <TextView-->
@@ -107,7 +106,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageButton_1playerWithPause_play"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButton_1playerWithPause_play"
@@ -118,7 +117,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButton_1playerWithPause_restart"
@@ -132,7 +131,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageButton_1playerWithPause_play"
-            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,10 +1,8 @@
-package com.example.hourglass;
+package com.example.hourglass.settings.manual;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,11 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.hourglass.MyAppCompatActivity;
+import com.example.hourglass.R;
+import com.example.hourglass.onClickInterface;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -60,6 +60,7 @@ public class ManualActivity extends MyAppCompatActivity {
 
         ArrayList<Subject> subjectArrayList = new ArrayList<>();
         subjectArrayList.add(new Subject("General", R.drawable.hourglass_icon, true));
+        subjectArrayList.add(new Subject("Settings",R.drawable.round_settings_24,false));
         subjectArrayList.add(new Subject("1PWP", R.drawable.person_65, R.drawable.round_replay_65, false));
         subjectArrayList.add(new Subject("1PNP", R.drawable.person_65, R.drawable.round_replay_40, false));
         subjectArrayList.add(new Subject("2PWP", R.drawable.two_people_65, R.drawable.round_pause_24, false));
@@ -77,20 +78,24 @@ public class ManualActivity extends MyAppCompatActivity {
                         tag = "0";
                         break;
                     case 1:
-                        fragment = new OnePWPmanualFragment();
+                        fragment = new SettingsManualFragment();
                         tag = "1";
                         break;
                     case 2:
-                        fragment = new OnePNPmanualFragment();
+                        fragment = new OnePWPmanualFragment();
                         tag = "2";
                         break;
                     case 3:
-                        fragment = new TwoPWPmanualFragment();
+                        fragment = new OnePNPmanualFragment();
                         tag = "3";
                         break;
                     case 4:
-                        fragment = new TwoPNPmanualFragment();
+                        fragment = new TwoPWPmanualFragment();
                         tag = "4";
+                        break;
+                    case 5:
+                        fragment = new TwoPNPmanualFragment();
+                        tag = "5";
                         break;
 //                    default:
                 }
@@ -121,7 +126,7 @@ public class ManualActivity extends MyAppCompatActivity {
         actionBar.setTitle("");
         toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
 
-        toolbarTitle.setText(R.string.settingsTextManual);
+        toolbarTitle.setText(R.string.manualHomeButton);
         return toolbar;
     }
 

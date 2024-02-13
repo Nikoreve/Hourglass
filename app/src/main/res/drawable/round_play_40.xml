@@ -1,5 +1,32 @@
-<vector android:height="40dp" android:tint="#000000"
-    android:viewportHeight="24" android:viewportWidth="24"
-    android:width="40dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="@android:color/white" android:pathData="M8,6.82v10.36c0,0.79 0.87,1.27 1.54,0.84l8.14,-5.18c0.62,-0.39 0.62,-1.29 0,-1.69L9.54,5.98C8.87,5.55 8,6.03 8,6.82z"/>
-</vector>
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_activated="true">
+
+        <vector android:width="40dp" android:height="40dp" android:tint="@color/sand_100" android:viewportWidth="24" android:viewportHeight="24">
+            <path android:fillColor="@android:color/white" android:pathData="M8,6.82v10.36c0,0.79 0.87,1.27 1.54,0.84l8.14,-5.18c0.62,-0.39 0.62,-1.29 0,-1.69L9.54,5.98C8.87,5.55 8,6.03 8,6.82z" />
+        </vector>
+    </item>
+    <item android:state_focused="true">
+
+        <vector android:width="40dp" android:height="40dp" android:tint="@color/sand_100" android:viewportWidth="24" android:viewportHeight="24">
+            <path android:fillColor="@android:color/white" android:pathData="M8,6.82v10.36c0,0.79 0.87,1.27 1.54,0.84l8.14,-5.18c0.62,-0.39 0.62,-1.29 0,-1.69L9.54,5.98C8.87,5.55 8,6.03 8,6.82z" />
+        </vector>
+    </item>
+    <item android:state_pressed="true">
+
+        <vector android:width="40dp" android:height="40dp" android:tint="@color/sand_100" android:viewportWidth="24" android:viewportHeight="24">
+            <path  android:fillColor="@android:color/white" android:pathData="M8,6.82v10.36c0,0.79 0.87,1.27 1.54,0.84l8.14,-5.18c0.62,-0.39 0.62,-1.29 0,-1.69L9.54,5.98C8.87,5.55 8,6.03 8,6.82z" />
+        </vector>
+    </item>
+    <item android:state_selected="true">
+
+        <vector android:width="40dp" android:height="40dp" android:tint="@color/sand_100" android:viewportWidth="24" android:viewportHeight="24">
+            <path android:fillColor="@android:color/white" android:pathData="M8,6.82v10.36c0,0.79 0.87,1.27 1.54,0.84l8.14,-5.18c0.62,-0.39 0.62,-1.29 0,-1.69L9.54,5.98C8.87,5.55 8,6.03 8,6.82z" />
+        </vector>
+    </item>
+    <item>
+        <vector android:width="40dp" android:height="40dp" android:tint="@color/teal_400" android:viewportWidth="24" android:viewportHeight="24">
+            <path  android:fillColor="@android:color/white" android:pathData="M8,6.82v10.36c0,0.79 0.87,1.27 1.54,0.84l8.14,-5.18c0.62,-0.39 0.62,-1.29 0,-1.69L9.54,5.98C8.87,5.55 8,6.03 8,6.82z" />
+        </vector>
+    </item>
+</selector>

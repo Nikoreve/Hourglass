@@ -1,14 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GeneralManualFragment">
+    android:background="?android:attr/colorBackground"
+    tools:context=".settings.manual.GeneralManualFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="FRAGMENT GENRAL MANUAL" />
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/generalManual_motionLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutDescription="@xml/fragment_general_manual_xml_motionlayout_scene">
+
+            <TextView
+                android:id="@+id/header_generalManual_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/generalManual_title_txt"
+                android:textAppearance="@style/txt_header_manual"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/body1_generalManual_txt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/generalManual_body1_txt"
+                android:textAppearance="@style/txt_body_manual"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_generalManual_txt" />
+
+            <TextView
+                android:id="@+id/body2_generalManual_txt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/generalManual_body2_txt"
+                android:textAppearance="@style/txt_body_manual"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/body1_generalManual_txt" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?attr/colorSecondary"
+                app:layout_constraintBottom_toTopOf="@+id/body3_generalManual_txt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/body2_generalManual_txt" />
+
+            <TextView
+                android:id="@+id/body3_generalManual_txt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/generalManual_body3_txt"
+                android:textAppearance="@style/txt_body_manual"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/body2_generalManual_txt" />
+
+            <TextView
+                android:id="@+id/body4_generalManual_txt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/generalManual_body4_txt"
+                android:textAppearance="@style/txt_body_manual"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/body3_generalManual_txt" />
+
+            <TextView
+                android:id="@+id/body5_generalManual_txt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/generalManual_body5_txt"
+                android:textAppearance="@style/txt_body_manual"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/body4_generalManual_txt" />
+
+            <TextView
+                android:id="@+id/body6_generalManual_txt"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/generalManual_body6_txt"
+                android:textAppearance="@style/txt_body_manual"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/body5_generalManual_txt" />
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+    </ScrollView>
 
 </FrameLayout>

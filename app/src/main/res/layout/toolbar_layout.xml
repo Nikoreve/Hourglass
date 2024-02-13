@@ -5,15 +5,15 @@
     android:id="@+id/toolbar_layout"
     android:layout_gravity="center_horizontal"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    android:background="@color/secondary_fourth">
-
+    android:background="?attr/colorSurface">
+<!--    android:theme="@style/Theme.Hourglass"-->
     <TextView
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="@color/textcolor_first_black"
+        android:textColor="?attr/colorOnSurface"
         android:layout_gravity="center_horizontal">
     </TextView>
 

@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondary_sixth"
     android:animateLayoutChanges="true"
+    android:background="?android:attr/colorBackground"
     tools:context=".OnePlayerWithPauseFragment">
+    <!--        android:dark_grey_400="@drawable/sky_background"-->
 
     <FrameLayout
         android:id="@+id/relativeLayout_1playerNoPause"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="110dp"
-        android:background="@color/secondary_sixth"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textSize="24sp"
-            android:textStyle="bold"></Chronometer>
+            android:textStyle="bold" />
     </FrameLayout>
 
 
@@ -69,7 +69,7 @@
             android:src="@drawable/round_play_arrow_65"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButton_1playerNoPause_restart"
@@ -82,7 +82,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

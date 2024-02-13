@@ -6,7 +6,7 @@
     android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@color/primary_fifth"
+    android:background="?attr/colorPrimaryVariant"
     tools:context=".MainActivity">
 
 
@@ -14,20 +14,20 @@
         android:id="@+id/layoutSetPlayersDialog"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textview_setnofplayers_playersTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/setnofplayersTitle"
-            android:textStyle="bold"
-            android:textSize="21sp"
-            android:textColor="@color/textcolor_second"
             android:gravity="center"
-            app:layout_constraintTop_toTopOf="@id/layoutSetPlayersDialog"></TextView>
+            android:text="@string/setnofplayersTitle"
+            android:textColor="?android:attr/colorForeground"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/layoutSetPlayersDialog" />
 
         <RelativeLayout
             android:id="@+id/layoutRelativeSetPlayersDialog"
@@ -42,79 +42,81 @@
 
             <TextView
                 android:id="@+id/textview_setnofplayers_players"
-                android:layout_marginLeft="5dp"
                 android:layout_width="64dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:gravity="center"
-                android:text="@string/playersTxt"></TextView>
+                android:text="@string/playersTxt"
+                android:textColor="?android:attr/colorForeground" />
 
             <NumberPicker
                 android:id="@+id/numberPicker_setnofplayers_playersPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
+                android:background="?attr/colorPrimary"
                 android:gravity="center"
-
-                android:background="@color/secondary_sixth"></NumberPicker>
+                android:solidColor="?attr/colorPrimaryVariant" />
 
         </RelativeLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_setnofplayers_player1Name"
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColorHint="?attr/colorOnSecondary"
             android:textCursorDrawable="@null"
-            android:textColorHint="@color/textcolor_third_white"
             app:hintAnimationEnabled="true"
-            app:layout_constraintTop_toBottomOf="@+id/layoutRelativeSetPlayersDialog"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutRelativeSetPlayersDialog">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiet_setnofplayers_player1Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorSecondary"
                 android:hint="@string/hint_player1Name"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/secondary_second"
-                android:textSize="18sp"
                 android:inputType="textPersonName"
-                android:maxLength="20">
-            </com.google.android.material.textfield.TextInputEditText>
+                android:maxLength="20"
+                android:textColor="?android:attr/colorForeground"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_setnofplayers_player2Name"
-            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColorHint="?attr/colorOnSecondary"
             android:textCursorDrawable="@null"
-            android:textColorHint="@color/textcolor_third_white"
             app:hintAnimationEnabled="true"
-            app:layout_constraintTop_toBottomOf="@+id/til_setnofplayers_player1Name"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_setnofplayers_player1Name">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiet_setnofplayers_player2Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_player2Name"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/secondary_second"
-                android:textSize="18sp"
                 android:inputType="textPersonName"
-                android:maxLength="20">
-            </com.google.android.material.textfield.TextInputEditText>
+                android:maxLength="20"
+                android:backgroundTint="?attr/colorSecondary"
+                android:textColor="?android:attr/colorForeground"
+                android:textColorHint="?android:attr/colorForeground"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/button_setnofplayers_doneDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="82dp"
             android:layout_marginStart="102dp"
+            android:layout_marginTop="82dp"
+            android:backgroundTint="?attr/colorContainer"
             android:text="@string/doneButton"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/secondary_third"
+            android:textColor="?attr/colorOnContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_setnofplayers_player1Name" />
 

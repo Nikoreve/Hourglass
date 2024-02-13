@@ -19,9 +19,9 @@ import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.hourglass.settings.SettingsActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends MyAppCompatActivity {
@@ -58,7 +58,6 @@ public class MainActivity extends MyAppCompatActivity {
         //quitBtn.setOnClickListener((View.OnClickListener) this);
 
     }
-
     @SuppressLint("NonConstantResourceId")
     public void onClick(View view) {
         switch (view.getId()) {

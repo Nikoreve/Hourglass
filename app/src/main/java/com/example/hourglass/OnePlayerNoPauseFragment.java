@@ -11,12 +11,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +20,11 @@ import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 //MAIN PRINCIPLE IS TO STOP THE TIMER WHEN THE UI OF THE ACTIVITY IS INVISIBLE
 public class OnePlayerNoPauseFragment extends Fragment implements NotificationImplementation {
@@ -72,6 +71,46 @@ public class OnePlayerNoPauseFragment extends Fragment implements NotificationIm
         oneplayerNoPauseRestartIB = (ImageButton) view.findViewById(R.id.imageButton_1playerNoPause_restart);
         chronometer = (Chronometer) view.findViewById(R.id.chronometer);
         circular_progressBar = view.findViewById(R.id.progressBar_fopnp);
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("background_image_pref", Context.MODE_PRIVATE);
+        String background = sharedPreferences.getString("background_image", "default");
+        Log.d(TAG, "onCreateView: backgroundImage is: " + background);
+
+        try {
+            switch (background) {
+                case "default":
+                    break;
+                case "zmoon_dark_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zmoon_dark_background));
+                    break;
+                case "zsky_dark_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zsky_dark_background));
+                    break;
+                case "zblacksand_dark_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zblacksand_dark_background));
+                    break;
+                case "zcloudly_dark_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zcloudy_dark_background));
+                    break;
+                case "zdesert_sunny_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zdesert_sunny_background));
+                    break;
+                case "zmountain_both_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zmountain_both_background));
+                    break;
+                case "zmountain_dark_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zmountain_dark_background));
+                    break;
+                case "zroad_both_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zroad_both_background));
+                    break;
+                case "zsnow_both_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zsnow_both_background));
+                    break;
+            }
+        } catch (Exception exception) {
+            System.out.println("Exception thrown due to background image: " + exception);
+        }
 
         checkedRadiobutton = mainActivityObject.getUserPrefCurrentRadiobuttonChecked(getContext());
         if (checkedRadiobutton == 0) {

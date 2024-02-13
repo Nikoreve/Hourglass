@@ -6,7 +6,7 @@
     android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@color/primary_fifth"
+    android:background="?attr/colorPrimaryVariant"
     tools:context=".MainActivity">
 
 
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/setTimeTitle"
-            android:textColor="@color/textcolor_second"
+            android:textColor="?android:attr/colorForeground"
             android:textSize="21sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="@id/layoutDialog" />
@@ -61,7 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="140dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/secondary_sixth" />
+                android:background="?attr/colorPrimary"
+                android:solidColor="?attr/colorPrimaryVariant" />
 
             <NumberPicker
                 android:id="@+id/numberPicker_setTime_secondspicker"
@@ -70,7 +71,8 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/numberPicker_setTime_minutespicker"
-                android:background="@color/secondary_sixth" />
+                android:background="?attr/colorPrimary"
+                android:solidColor="?attr/colorPrimaryVariant" />
 
             <RadioGroup
                 android:id="@+id/radioGroup_setTime"
@@ -87,7 +89,7 @@
                     android:layout_marginTop="20dp"
                     android:checked="true"
                     android:text="@string/radioButton1"
-                    android:textColor="@color/black" />
+                    android:textColor="?android:attr/colorForeground" />
 
                 <RadioButton
                     android:id="@+id/radiobutton_setTime_customSet2"
@@ -96,7 +98,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="0dp"
                     android:text="@string/radioButton2"
-                    android:textColor="@color/black" />
+                    android:textColor="?android:attr/colorForeground" />
 
                 <RadioButton
                     android:id="@+id/radiobutton_setTime_customSet3"
@@ -105,7 +107,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="0dp"
                     android:text="@string/radioButton3"
-                    android:textColor="@color/black" />
+                    android:textColor="?android:attr/colorForeground" />
             </RadioGroup>
         </RelativeLayout>
 
@@ -117,7 +119,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:text="@string/withPauseText"
-            android:textColor="@color/textcolor_second"
+            android:textColor="?android:attr/colorForeground"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -138,9 +140,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/secondary_third"
+            android:backgroundTint="?attr/colorContainer"
             android:text="@string/doneButton"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_setTime_withPause" />

@@ -1,4 +1,4 @@
-package com.example.hourglass;
+package com.example.hourglass.settings.language;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -37,7 +37,7 @@ public class LanguageManager {
     public void setLang(String code) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("lang", code);
-        editor.commit();
+        editor.apply();
     }
 
 

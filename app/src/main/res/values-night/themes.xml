@@ -1,16 +1,48 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Hourglass" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Hourglass" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/dark_grey_500</item>
+        <item name="colorPrimaryVariant">@color/dark_grey_400</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/dark_grey_300</item>
         <item name="colorOnSecondary">@color/black</item>
+        <!-- Surface brand color. -->
+        <item name="colorSurface">@color/dark_grey_300</item>
+        <item name="colorSurfaceInverse">@color/dark_grey_300_A50</item>
+        <item name="colorOnSurface">@color/white</item>
+        <!-- Container brand color.-->
+        <item name="colorContainer">@color/blue_700</item>
+        <item name="colorOnContainer">@color/white</item>
+        <!-- Background brand color. -->
+        <item name="android:colorBackground">@color/dark_grey_500</item>
+        <item name="colorOnBackground">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <item name="android:colorForeground">#DFDFDF</item>
+        <item name="android:colorForegroundInverse">#6A6A6A</item>  <!-- Use in button enabled false in game display -->
         <!-- Customize your theme here. -->
+<!--        <item name="logo">@drawable/hourglass_title_white_image</item>-->
+        <item name="icon">@color/white</item>
+<!--        <item name="android:textColor">@color/white</item>-->
     </style>
+
+
+
+<!--    <style name="ScreenBackground"><item name="android:background">@color/dark_grey_500</item></style>-->
+
+<!--    <style name="MainMenuButtonBackgroundTint"><item name="android:backgroundTint">@color/dark_grey_300</item></style>-->
+<!--    <style name="MainMenuButtonForeground"><item name="android:textColor">@color/black</item></style>-->
+    <style name="ScreenDecorativeIcon1and4"><item name="android:backgroundTint">@color/dark_grey_800</item></style>
+    <style name="ScreenDecorativeIcon2and3"><item name="android:backgroundTint">@color/dark_grey_400</item></style>
+    <style name="HourglassTitleImage"><item name="android:src">@drawable/hourglass_title_white_image</item></style>
+<!--    <style name="button_enabled_false"><item name="android:color">#B3B3B3</item></style>-->
+
+<!--    <style name="SettingsMenuButtonBackground"><item name="android:backgroundTint">@color/dark_grey_300</item></style>-->
+<!--    <style name="SettingsMenuButtonForeground"><item name="android:textColor">@color/white</item></style>-->
+
+
 </resources>

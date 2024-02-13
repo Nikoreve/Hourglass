@@ -88,6 +88,45 @@ public class OnePlayerWithPauseFragment extends MyFragment implements Notificati
         chronometer = (Chronometer) view.findViewById(R.id.chronometer);
         circular_progressBar = view.findViewById(R.id.progressBar_fopwp);
 
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("background_image_pref", Context.MODE_PRIVATE);
+        String background = sharedPreferences.getString("background_image", "default");
+        Log.d(TAG, "onCreateView: backgroundImage is: " + background);
+        try {
+            switch (background) {
+                case "default":
+                    break;
+                case "zmoon_dark_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zmoon_dark_background));
+                    break;
+                case "zsky_dark_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zsky_dark_background));
+                    break;
+                case "zblacksand_dark_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zblacksand_dark_background));
+                    break;
+                case "zcloudly_dark_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zcloudy_dark_background));
+                    break;
+                case "zdesert_sunny_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zdesert_sunny_background));
+                    break;
+                case "zmountain_both_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zmountain_both_background));
+                    break;
+                case "zmountain_dark_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zmountain_dark_background));
+                    break;
+                case "zroad_both_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zroad_both_background));
+                    break;
+                case "zsnow_both_background":
+                    view.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.zsnow_both_background));
+                    break;
+            }
+        } catch (Exception exception) {
+            System.out.println("Exception thrown due to background image: " + exception);
+        }
+
 //        if (String.valueOf(mainActivityObject.getUserPref1MinutesNP(getContext())).length() == 1)
 //            onePlayerWithPauseMinutesTV.setText("0" + String.valueOf(mainActivityObject.getUserPref1MinutesNP(getContext())));
 //        else

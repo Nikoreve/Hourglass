@@ -1,16 +1,18 @@
-package com.example.hourglass;
+package com.example.hourglass.settings.manual;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.hourglass.R;
+import com.example.hourglass.onClickInterface;
 
 import java.util.ArrayList;
 
@@ -50,15 +52,15 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
             holder.subject_numberOfPlayers.setActivated(true);
             holder.subject_withOrNotPause.setActivated(true);
 //            holder.cardView.setCardBackgroundColor(manualActivity.getResources().getColor(R.color.primary_fifth));
-//            holder.cardView.setCardBackgroundColor(R.color.secondary_sixth);
+//            holder.cardView.setCardBackgroundColor(R.color.sand_100);
         } else {
 //            holder.itemView.setActivated(false);
             holder.arrowDown.setVisibility(View.INVISIBLE);
             holder.subject_numberOfPlayers.setActivated(false);
             holder.subject_withOrNotPause.setActivated(false);
-//            holder.cardView.setCardBackgroundColor(R.color.secondary_first);
-//            holder.cardView.setCardBackgroundColor(manualActivity.getResources().getColor(R.color.secondary_first));
-//                        holder.cardView.setCardBackgroundColor(R.color.secondary_seventh);
+//            holder.cardView.setCardBackgroundColor(R.color.blue_400);
+//            holder.cardView.setCardBackgroundColor(manualActivity.getResources().getColor(R.color.blue_400));
+//                        holder.cardView.setCardBackgroundColor(R.color.light_yellow_300);
 
         }
 
@@ -103,7 +105,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
 //    @SuppressLint("ResourceAsColor")
 //    public void ifIsNotNull(){
 //        if(cardView != null){
-//            cardView.setCardBackgroundColor(R.color.secondary_seventh);}
+//            cardView.setCardBackgroundColor(R.color.light_yellow_300);}
 //        if(view != null){
 //            view.setVisibility(View.VISIBLE);
 //        }

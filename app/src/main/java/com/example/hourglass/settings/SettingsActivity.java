@@ -1,21 +1,31 @@
-package com.example.hourglass;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.hourglass.settings;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
+
+import com.example.hourglass.MainActivity;
+import com.example.hourglass.settings.language.LanguageItem;
+import com.example.hourglass.settings.language.LanguageManager;
+import com.example.hourglass.settings.manual.ManualActivity;
+import com.example.hourglass.MyAppCompatActivity;
+import com.example.hourglass.R;
+import com.example.hourglass.settings.theme.ThemeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +37,12 @@ public class SettingsActivity extends MyAppCompatActivity implements View.OnClic
     Toolbar toolbar;
     AlertDialog.Builder builder;
     TextView toolbarTitle;
-
     LanguageManager languageManager;
     AlertDialog.Builder builderAbout;
+    SwitchCompat switchCompat;
+    SharedPreferences sharedPreferences;
+    boolean nightMode = false;
+    SharedPreferences.Editor editor;
     private CustomAdapter adapter;
     private List<LanguageItem> itemList;
 
@@ -43,11 +56,38 @@ public class SettingsActivity extends MyAppCompatActivity implements View.OnClic
 
         languagetxt = findViewById(R.id.language_settings);
         themetxt = findViewById(R.id.theme_settings);
+//        switchCompat = findViewById(R.id.switchCompat_activitySettings_switchTheme);
         manualtxt = findViewById(R.id.manual_settings);
         sfxtxt = findViewById(R.id.sfx_settings);
         musictxt = findViewById(R.id.music_settings);
         abouttxt = findViewById(R.id.about_settings);
 //        backButton = findViewById(R.id.back_settings);
+
+        sharedPreferences = getSharedPreferences("MODE", MODE_PRIVATE);
+        nightMode = sharedPreferences.getBoolean("nightMode", false);
+        if (nightMode) {
+            switchCompat.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+//        }else{
+//            switchCompat.setChecked(false);
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//        }
+//        switchCompat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (nightMode) {
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                    editor = sharedPreferences.edit();
+//                    editor.putBoolean("nightMode", false);
+//                } else {
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                    editor = sharedPreferences.edit();
+//                    editor.putBoolean("nightMode", true);
+//                }
+//                editor.apply();
+//            }
+//        });
 
 //        manualtxt.setOnClickListener(this::toDoManual);
 
@@ -153,7 +193,7 @@ public class SettingsActivity extends MyAppCompatActivity implements View.OnClic
         actionBar.setTitle("");
         toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
 
-        toolbarTitle.setText(R.string.settingsButton);
+        toolbarTitle.setText(R.string.settingsHomeButton);
         return toolbar;
     }
 

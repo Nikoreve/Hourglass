@@ -6,8 +6,8 @@
     android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@color/primary_fifth"
-    tools:context=".SetTimeActivity">
+    android:background="@color/sand_400">
+<!--    tools:context=".SetTimeActivity"-->
 
 
 <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
@@ -62,7 +62,7 @@
 <!--                android:layout_width="wrap_content"-->
 <!--                android:layout_height="120dp"-->
 <!--                android:layout_marginTop="20dp"-->
-<!--                android:background="@color/secondary_sixth"></NumberPicker>-->
+<!--                android:dark_grey_400="@color/sand_100"></NumberPicker>-->
 
 <!--            <NumberPicker-->
 <!--                android:id="@+id/numberPicker_setTime_secondspicker"-->
@@ -71,7 +71,7 @@
 <!--                android:layout_marginLeft="5dp"-->
 <!--                android:layout_marginTop="20dp"-->
 <!--                android:layout_toRightOf="@id/numberPicker_setTime_minutespicker"-->
-<!--                android:background="@color/secondary_sixth"></NumberPicker>-->
+<!--                android:dark_grey_400="@color/sand_100"></NumberPicker>-->
 
 <!--        </RelativeLayout>-->
 

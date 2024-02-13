@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondary_sixth"
+    android:background="?attr/colorPrimary"
     tools:context=".MainActivity">
 
     <View
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:background="@drawable/background_ellipse_1"
+        style="@style/ScreenDecorativeIcon1and4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,6 +20,7 @@
         android:layout_height="200dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/background_ellipse_2"
+        style="@style/ScreenDecorativeIcon2and3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,8 +32,9 @@
         android:padding="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hourglass_title" />
+        style="@style/HourglassTitleImage"
+        app:layout_constraintTop_toTopOf="parent"/>
+<!--        app:srcCompat="@drawable/hourglass_title_black_image" />-->
 
 
     <ImageView
@@ -51,10 +54,10 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:backgroundTint="@color/primary_fifth"
+        android:backgroundTint="?attr/colorPrimaryVariant"
         android:onClick="onClick"
         android:text="@string/startButton"
-        android:textColor="@color/textcolor_first_black"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,10 +69,10 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:backgroundTint="@color/primary_fifth"
+        android:backgroundTint="?attr/colorPrimaryVariant"
         android:onClick="onClick"
         android:text="@string/setTimeButton"
-        android:textColor="@color/textcolor_first_black"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,10 +83,10 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:backgroundTint="@color/primary_fifth"
+        android:backgroundTint="?attr/colorPrimaryVariant"
         android:onClick="onClick"
         android:text="@string/playersButton"
-        android:textColor="@color/textcolor_first_black"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,10 +97,10 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:backgroundTint="@color/primary_fifth"
+        android:backgroundTint="?attr/colorPrimaryVariant"
         android:onClick="onClick"
-        android:text="@string/settingsButton"
-        android:textColor="@color/textcolor_first_black"
+        android:text="@string/settingsHomeButton"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,9 +111,9 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:backgroundTint="@color/primary_fifth"
+        android:backgroundTint="?attr/colorPrimaryVariant"
         android:text="@string/quitButton"
-        android:textColor="@color/textcolor_first_black"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,6 +125,7 @@
         android:layout_height="250dp"
         android:layout_marginBottom="80dp"
         android:background="@drawable/background_ellipse_3"
+        style="@style/ScreenDecorativeIcon2and3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -129,6 +133,7 @@
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:background="@drawable/background_ellipse_4"
+        style="@style/ScreenDecorativeIcon1and4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

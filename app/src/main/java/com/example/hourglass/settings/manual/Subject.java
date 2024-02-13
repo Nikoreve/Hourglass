@@ -1,4 +1,4 @@
-package com.example.hourglass;
+package com.example.hourglass.settings.manual;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -10,8 +10,6 @@ public class Subject {
     private int imageIDgeneral;
     private int imageID1;
     private int imageID2;
-//    private CardView cardView;
-//    private View view;
     private boolean isClicked;
 
     public Subject(String name, int imageID1, int imageID2, boolean isClicked) {

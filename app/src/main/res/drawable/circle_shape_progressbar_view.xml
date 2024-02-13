@@ -6,11 +6,11 @@
     android:useLevel="false">
 
     <gradient
-        android:centerColor="@color/secondary_sixth"
+        android:centerColor="@color/sand_100"
         android:gradientRadius="55%p"
         android:endColor="@color/black"
         android:type="radial"/>
 <!--    <solid-->
-<!--        android:color="@color/secondary_first"/>-->
+<!--        android:color="@color/blue_400"/>-->
 
 </shape>

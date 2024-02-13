@@ -31,7 +31,6 @@ public class TwoPlayersNoPauseFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_two_players_no_pause, container, false);
     }
-
     @Override
     public void onResume(){
         super.onResume();
