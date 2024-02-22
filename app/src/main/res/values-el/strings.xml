@@ -18,6 +18,10 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
+    <!-- activity_splash_screen    -->
+    <string name="splashScreen_titleSub1">Hour</string>
+    <string name="splashScreen_titlesub2">glass</string>
+
     <!--    activity_main.xml-->
     <string name="startButton">ΞΕΚΙΝΑ</string>
     <string name="setTimeButton">ΟΡΙΣΕ ΧΡΟΝΟ</string>

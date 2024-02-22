@@ -18,7 +18,11 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
-    <!--    activity_settings.xml-->
+    <!-- activity_splash_screen    -->
+    <string name="splashScreen_titleSub1">Hour</string>
+    <string name="splashScreen_titlesub2">glass</string>
+
+    <!--    activity_main.xml-->
     <string name="startButton">START</string>
     <string name="setTimeButton">SET TIME</string>
     <string name="playersButton">PLAYERS</string>
@@ -35,7 +39,7 @@
     <string name="settingsButtonBack">Back</string>
     <string name="aboutDialogTitle">Application Info</string>
     <string name="aboutDialogMessage">
-        Hourglass developped by android developer Nikolas Sarakenidis\n
+        Hourglass developed by android developer Nikolas Sarakenidis\n
         The application runs only on Android smartphones\n
         Minimum SDK: 24\n
         Version: 1.01
@@ -86,7 +90,7 @@
     <string name="generalManual_body1_txt">\tHourglass is an application developed with the purpose of using a timer either for one user (one timer) or for two (two timers).</string>
     <string name="generalManual_body2_txt">\tHistorically hourglass was a tool that is used for measuring the time. It\'s consisted by 2 glass containers that are vertically aligned in order to make the material that\'s inside it to penetrate and across from top to the bottom side. Today we are using the evolved hourglass to measure the time that is passed from a specific time, thanks to techonology.</string>
     <string name="generalManual_body3_txt">\tThis application has a meaningful matter as it cannot only show a reversed timer for a user but also can make two reversed timers for two users. But lest\'s take the things in order.</string>
-    <string name="generalManual_body4_txt">\tAt first, in the main menu are two buttons which the mode of hourglass is depended by. The \'set time\' button is used to set the minutes and seconds of timer. Also there is a box that if it\'s clicked the timer will contain the pause option. Lastly there are three buttons, each of them stores the time of your own preference, for future use. The \'players\' button is used to set the number of users or, if you\'d like, the number of timers. In the case the picked users are two, you can apply the name of each one to seperate wich timer is whom.</string>
+    <string name="generalManual_body4_txt">\tAt first, in the main menu are two buttons which the mode of hourglass is depended by. The \'set time\' button is used to set the minutes and seconds of timer. Also there is a box that if it\'s clicked the timer will contain the pause option. Lastly there are three buttons, each of them stores the time of your own preference, for future use. The \'players\' button is used to set the number of users or, if you\'d like, the number of timers. In the case the picked users are two, you can apply the name of each one to separate which timer is whom.</string>
     <string name="generalManual_body5_txt">\tSo, there are four types of displayed timers, which are: 1 player with pause (1PWP), 1 player no pause (1PNP), 2 players with pause (2PWP), 2 players no pause (2PNP). By hitting the \'start\' button of the main menu, the corresponding timer/s is/are displayed according to your given picks.</string>
     <string name="generalManual_body6_txt">\tFinally, there is the settings button, that\'s described in the settings manual section.</string>
 
@@ -113,8 +117,8 @@
     <string name="settingsManual_body1_txt">\tThere are five buttons in settings layout. The application supports two languages so far, english and greek. Each language can be chose by the language button.</string>
     <string name="settingsManual_body2_txt">\tHourglass also supports two theme modes, light and dark. User can choose between three options, either light mode or dark mode or user\'s system theme. If user\'s theme is light, then light mode will be displayed and so on. By default system\'s theme is selected.\n
         \tAdditionally, in the same screen, user can set the image he/she wants to display in the game\'s screen background. User can choose only one game\'s theme at a time. Every time app\'s theme changes, the background game image return to default pick. Some images are prohibited to be used only in light mode, some others only in dark and some in both modes.</string>
-<!--    <string name="settingsManual_body3_txt">SFX</string>-->
-<!--    <string name="settingsManual_body4_txt">MUSIC</string>-->
+    <!--    <string name="settingsManual_body3_txt">SFX</string>-->
+    <!--    <string name="settingsManual_body4_txt">MUSIC</string>-->
     <string name="settingsManual_body5_txt">\tThe About button represents the application information.</string>
     <!--    -->
     <!--    -->

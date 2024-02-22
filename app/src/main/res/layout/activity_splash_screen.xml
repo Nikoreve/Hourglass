@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    tools:context=".SplashScreenActivity">
+
+    <View
+        style="@style/ScreenDecorativeIcon1and4"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/background_ellipse_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        style="@style/ScreenDecorativeIcon2and3"
+        android:layout_width="130dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/background_ellipse_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        style="@style/ScreenDecorativeIcon2and3"
+        android:layout_width="150dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/background_ellipse_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        style="@style/ScreenDecorativeIcon1and4"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/background_ellipse_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/horizontal_line_left"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_alignEnd="@id/textView_titleSub1"
+            android:layout_marginEnd="45dp"
+            android:background="?attr/colorSecondary"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_titleSub1"
+            style="@style/ScreenDecorativeIcon2and3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/splashScreen_titleSub1"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:translationX="-36.5dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView_titleSub2"
+            style="@style/ScreenDecorativeIcon2and3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/splashScreen_titlesub2"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:translationX="36.5dp" />
+
+        <View
+            android:id="@+id/horizontal_line_right"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_alignStart="@id/textView_titleSub2"
+            android:layout_alignBottom="@id/textView_titleSub2"
+            android:layout_marginStart="45dp"
+            android:background="?attr/colorSecondary"
+            android:rotation="0" />
+
+    </RelativeLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView_hourglassTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="0"
+        android:scaleY="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/animation_hourglass" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
